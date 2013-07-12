@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/mmu.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/mmu.c</h1><code>#include &quot;<a class="el" href="a00034.html">mmu.h</a>&quot;</code><br>
+
+<p>
+<a href="a00033.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Strutture dati</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00009.html">mmu_shared_data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struttura per contenere la richiesta attuale alla MMU.  <a href="a00009.html#_details">Continua...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00004.html">free_frames</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00014.html">used_frames</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002.html">active_pages</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#2b7cf2a3641be7b89138615764d60ba3">EMPTY</a>&nbsp;&nbsp;&nbsp;0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#361f5c696ea1c92c5f6bcc10579dc71c">DATA_AVAILABLE</a>&nbsp;&nbsp;&nbsp;1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#d5bf9f19224fe7d09c85b593d5e25b42">RESULT_AVAILABLE</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4">second_chance</a> (int procnum, <a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00011.html">page</a>, int update_stats, <a class="el" href="a00003.html">frame_t</a> **<a class="el" href="a00003.html">frame</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Algoritmo di rimpiazzo della pagina.  <a href="a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385">thread_mmu</a> (void *pArg)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thread MMU.  <a href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e">mmu_init</a> (int max_read, int ram_size, int page_size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inizializzazione MMU.  <a href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed">memory_access</a> (int procnum, <a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> address, int rw)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funzione per la lettura/scrittura di una zona di memoria.  <a href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Variabili</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#e4cc024f7d0cb7543216fc463ab91af3">anticipatory_paging</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indica se la paginazione anticipata risulta attiva.  <a href="#e4cc024f7d0cb7543216fc463ab91af3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct <a class="el" href="a00009.html">mmu_shared_data</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#7520871bbfeb026c594b6b8d092fade7">current</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Istanza della struttura <a class="el" href="a00009.html" title="Struttura per contenere la richiesta attuale alla MMU.">mmu_shared_data</a>.  <a href="#7520871bbfeb026c594b6b8d092fade7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#c7cb312ff21e1988a8b6bcd47f7449a5">mmu_should_exit</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variabile di controllo per l'MMU.  <a href="#c7cb312ff21e1988a8b6bcd47f7449a5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static pthread_mutex_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#66b87664ca0ad1edc381b14015d44eb5">mem_read_lock</a> = PTHREAD_MUTEX_INITIALIZER</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mutex per la mutua esclusione della chiamata a memory_access.  <a href="#66b87664ca0ad1edc381b14015d44eb5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static struct <a class="el" href="a00004.html">free_frames</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#004c64e9f470ff8317d439639f332c6e">free_frames_head</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lista dei <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> inutilizzati (puntatore al primo elemento).  <a href="#004c64e9f470ff8317d439639f332c6e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static struct <a class="el" href="a00014.html">used_frames</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#a7a68db730586e1b608240a228d4f707">used_frames_head</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lista dei <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> utilizzati (puntatore al primo elemento).  <a href="#a7a68db730586e1b608240a228d4f707"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static struct <a class="el" href="a00002.html">active_pages</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#16e8bd7a2c1c586be688cd20715372ca">active_page_head</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00012.html">proc_t</a> **&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vettore dei processi attivi.  <a href="#3ced92996544dd3229aeeb148a8b587e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#710037465055a75cba7d3b2625f966f8">max_proc</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numero di processi concorrenti.  <a href="#710037465055a75cba7d3b2625f966f8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00017.html#c3e1795766a80ec63b157951b4b9a7d4">debug</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Livello di debug.  <a href="#c3e1795766a80ec63b157951b4b9a7d4"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+<dl class="author" compact><dt><b>Autore:</b></dt><dd>Ferruccio Vitale (<a href="mailto:unixo@devzero.it">unixo@devzero.it</a>) </dd></dl>
+<dl class="date" compact><dt><b>Data:</b></dt><dd>21/04/2009</dd></dl>
+<dl class="note" compact><dt><b>Nota:</b></dt><dd>Universita' degli studi di Urbino "Carlo Bo"<br>
+ Sistemi Operativi<br>
+ Professore Emanuele Lattanzi<br>
+ Anno Accademico 2008 - 2009 </dd></dl>
+
+<p>Definizione nel file <a class="el" href="a00033.html">mmu.c</a>.</p>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="361f5c696ea1c92c5f6bcc10579dc71c"></a><!-- doxytag: member="mmu.c::DATA_AVAILABLE" ref="361f5c696ea1c92c5f6bcc10579dc71c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DATA_AVAILABLE&nbsp;&nbsp;&nbsp;1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00016">16</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2b7cf2a3641be7b89138615764d60ba3"></a><!-- doxytag: member="mmu.c::EMPTY" ref="2b7cf2a3641be7b89138615764d60ba3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EMPTY&nbsp;&nbsp;&nbsp;0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00015">15</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d5bf9f19224fe7d09c85b593d5e25b42"></a><!-- doxytag: member="mmu.c::RESULT_AVAILABLE" ref="d5bf9f19224fe7d09c85b593d5e25b42" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RESULT_AVAILABLE&nbsp;&nbsp;&nbsp;2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00017">17</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle variabili</h2>
+<a class="anchor" name="16e8bd7a2c1c586be688cd20715372ca"></a><!-- doxytag: member="mmu.c::active_page_head" ref="16e8bd7a2c1c586be688cd20715372ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00002.html">active_pages</a>  <a class="el" href="a00017.html#16e8bd7a2c1c586be688cd20715372ca">active_page_head</a><code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="e4cc024f7d0cb7543216fc463ab91af3"></a><!-- doxytag: member="mmu.c::anticipatory_paging" ref="e4cc024f7d0cb7543216fc463ab91af3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00025.html#e4cc024f7d0cb7543216fc463ab91af3">anticipatory_paging</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indica se la paginazione anticipata risulta attiva. 
+<p>
+Qualora il numero di <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> fisici disponibili siano superiori a 128 viene abilitata la paginazione anticipata. 
+<p>Definizione alla linea <a class="el" href="a00033.html#l00024">24</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7520871bbfeb026c594b6b8d092fade7"></a><!-- doxytag: member="mmu.c::current" ref="7520871bbfeb026c594b6b8d092fade7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00009.html">mmu_shared_data</a> <a class="el" href="a00017.html#7520871bbfeb026c594b6b8d092fade7">current</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Istanza della struttura <a class="el" href="a00009.html" title="Struttura per contenere la richiesta attuale alla MMU.">mmu_shared_data</a>. 
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3e1795766a80ec63b157951b4b9a7d4"></a><!-- doxytag: member="mmu.c::debug" ref="c3e1795766a80ec63b157951b4b9a7d4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00025.html#c3e1795766a80ec63b157951b4b9a7d4">debug</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Livello di debug. 
+<p>
+Determina il livello di dettaglio dei messaggi d'errore e informativi prodotti dal simulatore. Il parametro "-d" aumenta tale livello e puo essere specificato piu volte. 
+<p>Definizione alla linea <a class="el" href="a00041.html#l00057">57</a> del file <a class="el" href="a00041.html">vmbo.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="004c64e9f470ff8317d439639f332c6e"></a><!-- doxytag: member="mmu.c::free_frames_head" ref="004c64e9f470ff8317d439639f332c6e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STAILQ_HEAD <a class="el" href="a00017.html#004c64e9f470ff8317d439639f332c6e">free_frames_head</a><code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Lista dei <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> inutilizzati (puntatore al primo elemento). 
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="710037465055a75cba7d3b2625f966f8"></a><!-- doxytag: member="mmu.c::max_proc" ref="710037465055a75cba7d3b2625f966f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00025.html#710037465055a75cba7d3b2625f966f8">max_proc</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di processi concorrenti. 
+<p>
+La variabile <code>max_proc</code>, per default, viene inizializzato al valore 5, ma e tuttavia modificabile usando il paramentro <code>-p</code>. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00102">102</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="66b87664ca0ad1edc381b14015d44eb5"></a><!-- doxytag: member="mmu.c::mem_read_lock" ref="66b87664ca0ad1edc381b14015d44eb5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_mutex_t <a class="el" href="a00017.html#66b87664ca0ad1edc381b14015d44eb5">mem_read_lock</a> = PTHREAD_MUTEX_INITIALIZER<code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Mutex per la mutua esclusione della chiamata a memory_access. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00065">65</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c7cb312ff21e1988a8b6bcd47f7449a5"></a><!-- doxytag: member="mmu.c::mmu_should_exit" ref="c7cb312ff21e1988a8b6bcd47f7449a5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00017.html#c7cb312ff21e1988a8b6bcd47f7449a5">mmu_should_exit</a><code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Variabile di controllo per l'MMU. 
+<p>
+Questa variabile determina la durata del thread MMU: fintanto che il valore e pari a zero, il thread continua la propria esecuzione, viceversa termina. Questa variabile viene posta ad uno dalla funzione memory_access. 
+<p>Definizione alla linea <a class="el" href="a00033.html#l00060">60</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3ced92996544dd3229aeeb148a8b587e"></a><!-- doxytag: member="mmu.c::proc_table" ref="3ced92996544dd3229aeeb148a8b587e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00012.html">proc_t</a>** <a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vettore dei processi attivi. 
+<p>
+Viene allocato dalla funzione proc_init e deallocato nel main al termine dell'esecuzione; il numero massimo di elementi e dato dal valore di max_proc. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00095">95</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a7a68db730586e1b608240a228d4f707"></a><!-- doxytag: member="mmu.c::used_frames_head" ref="a7a68db730586e1b608240a228d4f707" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STAILQ_HEAD <a class="el" href="a00017.html#a7a68db730586e1b608240a228d4f707">used_frames_head</a><code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Lista dei <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> utilizzati (puntatore al primo elemento). 
+<p>
+Lista delle pagine residenti in memoria (puntatore al primo elemento). 
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

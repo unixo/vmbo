@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct proc</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct proc</h1><!-- doxytag: class="proc" -->Struttura per la rappresentazione in memoria di un processo.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00036.html">proc.h</a>&gt;</code>
+<p>
+<div class="dynheader">
+Diagramma di collaborazione per proc:</div>
+<div class="dynsection">
+<p><center><img src="a00066.png" border="0" usemap="#a00067" alt="Collaboration graph"></center>
+<map name="a00067">
+<area shape="rect" id="node2" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale." alt="" coords="5,5,59,35"><area shape="rect" id="node4" href="a00013.html" title="proc_stats" alt="" coords="91,5,184,35"></map>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center></div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Strutture dati</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00013.html">proc_stats</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#9089e9c40db82122a499b9620e2cb54e">pid</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#3a5ba243b3ab4b6093afb178de0f9509">tid</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#d300f63eba5764dcb0ec72bb90bb0199">page_count</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00011.html">page_t</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#00862739fa1ee52925b945d4d54983e6">page_table</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#6de54b1879231616cc4994a131e22d60">percentile</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_cond_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#e6e562efa64e04e34601544c2a1f6882">io_cond</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_mutex_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#46a9089ef16588eba219816c0534df5b">io_lock</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">FILE *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#b936051f5aaca44c6c3c41dee0d19c36">log_file</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct <a class="el" href="a00013.html">proc::proc_stats</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html#b40465dfd308c1e950e209f5ec8da035">last_address</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Struttura per la rappresentazione in memoria di un processo. 
+<p>
+E' la funzione proc_init ad avere il compito di creare i thread che simuleranno un processo utente: per ognuno di questi verra creata un'equivalente voce nella tabella dei processi. 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00033">33</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="e6e562efa64e04e34601544c2a1f6882"></a><!-- doxytag: member="proc::io_cond" ref="e6e562efa64e04e34601544c2a1f6882" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_cond_t <a class="el" href="a00012.html#e6e562efa64e04e34601544c2a1f6882">io_cond</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Condizione d'attesa a seguito della richiesta di I/O 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00046">46</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="46a9089ef16588eba219816c0534df5b"></a><!-- doxytag: member="proc::io_lock" ref="46a9089ef16588eba219816c0534df5b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_mutex_t <a class="el" href="a00012.html#46a9089ef16588eba219816c0534df5b">io_lock</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Mutex per la condizione d'attesa 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00048">48</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b40465dfd308c1e950e209f5ec8da035"></a><!-- doxytag: member="proc::last_address" ref="b40465dfd308c1e950e209f5ec8da035" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00012.html#b40465dfd308c1e950e209f5ec8da035">last_address</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ultimo indirizzo di memoria generato (localita) 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00063">63</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b936051f5aaca44c6c3c41dee0d19c36"></a><!-- doxytag: member="proc::log_file" ref="b936051f5aaca44c6c3c41dee0d19c36" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* <a class="el" href="a00012.html#b936051f5aaca44c6c3c41dee0d19c36">log_file</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+File di log associato al processo 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00050">50</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d300f63eba5764dcb0ec72bb90bb0199"></a><!-- doxytag: member="proc::page_count" ref="d300f63eba5764dcb0ec72bb90bb0199" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned <a class="el" href="a00012.html#d300f63eba5764dcb0ec72bb90bb0199">page_count</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di pagine allocate dal processo 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00039">39</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="00862739fa1ee52925b945d4d54983e6"></a><!-- doxytag: member="proc::page_table" ref="00862739fa1ee52925b945d4d54983e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00011.html">page_t</a>* <a class="el" href="a00012.html#00862739fa1ee52925b945d4d54983e6">page_table</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tabella delle pagine del processo 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00041">41</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6de54b1879231616cc4994a131e22d60"></a><!-- doxytag: member="proc::percentile" ref="6de54b1879231616cc4994a131e22d60" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float <a class="el" href="a00012.html#6de54b1879231616cc4994a131e22d60">percentile</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Percentuale di effettuare un accesso alla memoria piuttosto che una lettura dal dispositivo di I/O 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00044">44</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9089e9c40db82122a499b9620e2cb54e"></a><!-- doxytag: member="proc::pid" ref="9089e9c40db82122a499b9620e2cb54e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00012.html#9089e9c40db82122a499b9620e2cb54e">pid</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Process ID: identificativo del processo all'interno della <a class="el" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc</a> table 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00035">35</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b30a97b34de52ba50f4a68dd215fe39a"></a><!-- doxytag: member="proc::stats" ref="b30a97b34de52ba50f4a68dd215fe39a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00013.html">proc::proc_stats</a>  <a class="el" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Statistiche delle operazioni effettuate dal processo 
+</div>
+</div><p>
+<a class="anchor" name="3a5ba243b3ab4b6093afb178de0f9509"></a><!-- doxytag: member="proc::tid" ref="3a5ba243b3ab4b6093afb178de0f9509" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_t <a class="el" href="a00012.html#3a5ba243b3ab4b6093afb178de0f9509">tid</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Thread ID associato al processo 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00037">37</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00036.html">proc.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

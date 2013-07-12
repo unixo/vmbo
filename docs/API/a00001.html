@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct active_page</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct active_page</h1><!-- doxytag: class="active_page" -->Struttura per rappresentare una pagina associata ad un <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00034.html">mmu.h</a>&gt;</code>
+<p>
+<div class="dynheader">
+Diagramma di collaborazione per active_page:</div>
+<div class="dynsection">
+<p><center><img src="a00050.png" border="0" usemap="#a00051" alt="Collaboration graph"></center>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center></div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00001.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00001.html#50d22eccd6a329903c047ce9a7e020ae">page_id</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap>struct {</td></tr>
+
+<tr><td class="memItemLeft" nowrap>&nbsp;&nbsp;&nbsp;struct <a class="el" href="a00001.html">active_page</a> *&nbsp;&nbsp;&nbsp;<a class="el" href="a00001.html#627e0d8d1bd27ddf2632156e2593bf56">tqe_next</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap>&nbsp;&nbsp;&nbsp;struct <a class="el" href="a00001.html">active_page</a> **&nbsp;&nbsp;&nbsp;<a class="el" href="a00001.html#178dbad60ef82ec1321ff053b58ec348">tqe_prev</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap valign="top">}&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00001.html#8d90b1cf6dc28f303ed7c140cfeb9c73">entries</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Struttura per rappresentare una pagina associata ad un <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>. 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00136">136</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="8d90b1cf6dc28f303ed7c140cfeb9c73"></a><!-- doxytag: member="active_page::entries" ref="8d90b1cf6dc28f303ed7c140cfeb9c73" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   <a class="el" href="a00001.html#8d90b1cf6dc28f303ed7c140cfeb9c73">entries</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Puntatore al successivo elemento della lista 
+</div>
+</div><p>
+<a class="anchor" name="50d22eccd6a329903c047ce9a7e020ae"></a><!-- doxytag: member="active_page::page_id" ref="50d22eccd6a329903c047ce9a7e020ae" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00001.html#50d22eccd6a329903c047ce9a7e020ae">page_id</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Identificativo della pagina associata ad un <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00140">140</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2ff0507ae66e3e57f919445037f8db1d"></a><!-- doxytag: member="active_page::procnum" ref="2ff0507ae66e3e57f919445037f8db1d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00001.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Identificativo del processo all'interno della <a class="el" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc</a> table 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00138">138</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="627e0d8d1bd27ddf2632156e2593bf56"></a><!-- doxytag: member="active_page::tqe_next" ref="627e0d8d1bd27ddf2632156e2593bf56" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00001.html">active_page</a>* <a class="el" href="a00001.html#627e0d8d1bd27ddf2632156e2593bf56">tqe_next</a><code> [read]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00142">142</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="178dbad60ef82ec1321ff053b58ec348"></a><!-- doxytag: member="active_page::tqe_prev" ref="178dbad60ef82ec1321ff053b58ec348" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00001.html">active_page</a>** <a class="el" href="a00001.html#178dbad60ef82ec1321ff053b58ec348">tqe_prev</a><code> [read]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00142">142</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00034.html">mmu.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

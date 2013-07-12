@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct mmu_data</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct mmu_data</h1><!-- doxytag: class="mmu_data" -->Parametri di configurazione del modulo MMU.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00034.html">mmu.h</a>&gt;</code>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">offset_mask</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#e050b82b994239e7902e82bb0ce27626">page_faults</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#259b2896187acb71444706a1878157e4">page_hits</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">page_size</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#7bbdf033c0ac1031e3d41e4e4c40a0a9">ram_size</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html#a7b13eb6d3954f3874a6670e551c29d4">max_page_count</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Parametri di configurazione del modulo MMU. 
+<p>
+Questa struttura viene inizializzata dalla funzione mmu_init; e possibile modificare alcuni valori con gli opportuni parametri specificati su riga di comando. 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00083">83</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="a7b13eb6d3954f3874a6670e551c29d4"></a><!-- doxytag: member="mmu_data::max_page_count" ref="a7b13eb6d3954f3874a6670e551c29d4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00008.html#a7b13eb6d3954f3874a6670e551c29d4">max_page_count</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero massimo di pagine disponibili 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00101">101</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9407343837c7bff10e3fafbcbd4e5e12"></a><!-- doxytag: member="mmu_data::offset_bits" ref="9407343837c7bff10e3fafbcbd4e5e12" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero massimo di bit per l'offset di un indirizzo virtuale 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00087">87</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aeff6f121e4b4b87654c3c98ff8afb2a"></a><!-- doxytag: member="mmu_data::offset_mask" ref="aeff6f121e4b4b87654c3c98ff8afb2a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">offset_mask</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero intero per estrarre l'offset da un indirizzo virtuale (AND) 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00089">89</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3282e2d3604abd7df42b7f433eae3f0c"></a><!-- doxytag: member="mmu_data::page_bits" ref="3282e2d3604abd7df42b7f433eae3f0c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero massimo di pagine per processo 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00085">85</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e050b82b994239e7902e82bb0ce27626"></a><!-- doxytag: member="mmu_data::page_faults" ref="e050b82b994239e7902e82bb0ce27626" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#e050b82b994239e7902e82bb0ce27626">page_faults</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero totale di <a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> fault avvenuti 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00093">93</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="259b2896187acb71444706a1878157e4"></a><!-- doxytag: member="mmu_data::page_hits" ref="259b2896187acb71444706a1878157e4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#259b2896187acb71444706a1878157e4">page_hits</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero totale di <a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> hit avvenuti 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00095">95</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9dd3e47e968a8f6beb5d88c6d1b7ebe9"></a><!-- doxytag: member="mmu_data::page_size" ref="9dd3e47e968a8f6beb5d88c6d1b7ebe9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">page_size</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Dimensione della singola pagina/frame 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00097">97</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7bbdf033c0ac1031e3d41e4e4c40a0a9"></a><!-- doxytag: member="mmu_data::ram_size" ref="7bbdf033c0ac1031e3d41e4e4c40a0a9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#7bbdf033c0ac1031e3d41e4e4c40a0a9">ram_size</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Quantita' complessiva di memoria principale 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00099">99</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7deeacf0032d6dfa1aa2a9b9532bef4f"></a><!-- doxytag: member="mmu_data::total_access" ref="7deeacf0032d6dfa1aa2a9b9532bef4f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> <a class="el" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero totale di accessi alla memoria prima che il programma termini 
+<p>Definizione alla linea <a class="el" href="a00034.html#l00091">91</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00034.html">mmu.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

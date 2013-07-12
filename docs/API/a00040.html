@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO:  File sorgente vmbo/src/vm_types.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<h1>vmbo/src/vm_types.h</h1><a href="a00024.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef __VM_TYPES_H__</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define __VM_TYPES_H__</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00017"></a>00017 
+<a name="l00023"></a><a class="code" href="a00024.html#5bd6c80bbb0fa36b35dddb1c9606e99c">00023</a> <span class="preprocessor">#define XMALLOC(type, num)      ((type *) xmalloc ((num) * sizeof(type)))</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span>
+<a name="l00030"></a><a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65">00030</a> <span class="preprocessor">#define XFREE(stale)            do { \</span>
+<a name="l00031"></a>00031 <span class="preprocessor">if (stale) { free ((void *) stale); \</span>
+<a name="l00032"></a>00032 <span class="preprocessor">stale = 0; } \</span>
+<a name="l00033"></a>00033 <span class="preprocessor">} while (0)</span>
+<a name="l00034"></a>00034 <span class="preprocessor"></span>
+<a name="l00039"></a><a class="code" href="a00024.html#c0ee8459c3d2924e31b51bd36db6ac5c">00039</a> <span class="keyword">typedef</span> <span class="keywordtype">void</span> *(*thread_fn_t) (<span class="keywordtype">void</span> *);
+<a name="l00040"></a>00040 
+<a name="l00043"></a><a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">00043</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a>;
+<a name="l00044"></a>00044 
+<a name="l00047"></a><a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582">00047</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a>;
+<a name="l00048"></a>00048 
+<a name="l00055"></a><a class="code" href="a00011.html">00055</a> <span class="keyword">struct </span><a class="code" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> {
+<a name="l00057"></a><a class="code" href="a00011.html#4fc3a0c58dfbd1e68224521185cb9384">00057</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00011.html#4fc3a0c58dfbd1e68224521185cb9384">id</a>;
+<a name="l00059"></a><a class="code" href="a00011.html#0ece58bcf125edef002fd8cc75f8d6da">00059</a>     <span class="keywordtype">int</span> <a class="code" href="a00011.html#0ece58bcf125edef002fd8cc75f8d6da">present</a>:1;
+<a name="l00061"></a><a class="code" href="a00011.html#af215a3c05140d166ae6441c061d0643">00061</a>     <span class="keywordtype">int</span> <a class="code" href="a00011.html#af215a3c05140d166ae6441c061d0643">reference</a>:1;
+<a name="l00063"></a><a class="code" href="a00011.html#120b75c12097e7fdda71535d04ae7880">00063</a>     <span class="keywordtype">int</span> <a class="code" href="a00011.html#120b75c12097e7fdda71535d04ae7880">dirty</a>:1;
+<a name="l00065"></a><a class="code" href="a00011.html#ee084224c146556b8fa176ded51352d7">00065</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00011.html#ee084224c146556b8fa176ded51352d7">frame_id</a>;
+<a name="l00066"></a>00066 };
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="a00024.html#de89166d54350940b6a08604d1119f4e">00068</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> <a class="code" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page_t</a>;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keywordtype">void</span> *<a class="code" href="a00024.html#307a2ba6d2366704dc1d57b8d20b37ef" title="Wrapper della funzione &amp;quot;malloc&amp;quot;.">xmalloc</a>(<span class="keywordtype">size_t</span>);
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#endif    </span><span class="comment">/* __VM_TYPES_H__ */</span>
+</pre></div></div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

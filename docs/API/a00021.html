@@ -1,0 +1,2680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/queue.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/queue.h</h1>
+<p>
+<div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dynsection">
+<p><center><img src="a00046.png" border="0" usemap="#vmbo/src/queue.hdep_map" alt=""></center>
+<map name="vmbo/src/queue.hdep_map">
+<area shape="rect" id="node3" href="a00016.html" title="vmbo/src/io_device.h" alt="" coords="160,83,320,112"><area shape="rect" id="node7" href="a00018.html" title="vmbo/src/mmu.h" alt="" coords="5,160,136,189"><area shape="rect" id="node5" href="a00015.html" title="vmbo/src/io_device.c" alt="" coords="160,160,320,189"><area shape="rect" id="node11" href="a00019.html" title="vmbo/src/proc.c" alt="" coords="173,237,301,267"><area shape="rect" id="node13" href="a00025.html" title="vmbo/src/vmbo.c" alt="" coords="332,237,468,267"><area shape="rect" id="node9" href="a00017.html" title="vmbo/src/mmu.c" alt="" coords="5,237,136,267"></map>
+</div>
+
+<p>
+<a href="a00037.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(elem)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#743488648fbd29bf4cf1addf004f43ef">TRACEBUF</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>(x)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#8224e40ea764bc857bab6f6d9c357dd9">SLIST_HEAD</a>(name, type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#9ae2aca3d46e62be4cb1408bd946ef15">SLIST_HEAD_INITIALIZER</a>(head)&nbsp;&nbsp;&nbsp;{ NULL }</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#5dd8bb1cef024ac008680e7e3b660332">SLIST_ENTRY</a>(type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#59bcc4e6f4bf63b897bdc0644566c583">SLIST_EMPTY</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;slh_first == NULL)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;slh_first)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#05db87878125c27e3060dd641aa3b0f4">SLIST_FOREACH</a>(var, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#feca7f301bcbd06a17821aa00e9d14d5">SLIST_FOREACH_SAFE</a>(var, head, field, tvar)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7017f84f3ba90cd69441f09b2825f7b9">SLIST_FOREACH_PREVPTR</a>(var, varp, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#361ac8e88cf066cc4d46d28b54fd3031">SLIST_INIT</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f1d994d9652ccbc41a60b747dfc15ea5">SLIST_INSERT_AFTER</a>(slistelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#48df7439e09a419afabdd1f2f8551e73">SLIST_INSERT_HEAD</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.sle_next)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#9c7950d61593ab9198524fca81b17ab0">SLIST_REMOVE</a>(head, elm, type, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#eb10c664372b3b680455274170f4c897">SLIST_REMOVE_HEAD</a>(head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7b54f0de61925e7cf33184c2ec24da14">STAILQ_HEAD</a>(name, type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#3d41ce2c3f1dd21c0d4051d13204c321">STAILQ_HEAD_INITIALIZER</a>(head)&nbsp;&nbsp;&nbsp;{ NULL, &amp;(head).stqh_first }</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#765904f4fab4e7de1e2cd8ff351bc353">STAILQ_ENTRY</a>(type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#adfbe79db37e93cf528ae79a9aafb755">STAILQ_CONCAT</a>(head1, head2)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#8427c8f43d09d73062cf6b37f303aff5">STAILQ_EMPTY</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;stqh_first == NULL)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;stqh_first)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#77999ebdf5aaf7af8b8ea22bf208c432">STAILQ_FOREACH</a>(var, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c3203dcce73148c142df4586eb55ce55">STAILQ_FOREACH_SAFE</a>(var, head, field, tvar)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#3b508a1c06ded6b4ce4b1feea7643c28">STAILQ_INIT</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f6ebdaf4ccbde5e464273b8079e832b3">STAILQ_INSERT_AFTER</a>(head, tqelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#ad3b1fb87b675bae75334acd958b57dc">STAILQ_INSERT_HEAD</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7bc9a31418b55c5698be3e54e10bb484">STAILQ_INSERT_TAIL</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#e18d422917aa0b8efb0f58d92a19ae41">STAILQ_LAST</a>(head, type, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.stqe_next)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#2a0d6665f277f80bf301a16e6ab2403c">STAILQ_REMOVE</a>(head, elm, type, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#24c16c7c5c9908022bad7a98ddac9740">STAILQ_REMOVE_HEAD</a>(head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#ed257e38fe7f5f70c744109c29b3e960">STAILQ_REMOVE_HEAD_UNTIL</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#e72219f63b2fe9bce774a64e11404179">LIST_HEAD</a>(name, type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#5d7b8e9f9968d3152a8519cd9a45312e">LIST_HEAD_INITIALIZER</a>(head)&nbsp;&nbsp;&nbsp;{ NULL }</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#ec2ccd0e8c215504508af23f04480be6">LIST_ENTRY</a>(type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#56b1069d0673242f84246986614b15cc">QMD_LIST_CHECK_HEAD</a>(head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#98d7f73cec635caf9515945f0d5413f6">QMD_LIST_CHECK_NEXT</a>(elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a03b790c1e9ea4475fff822f2f924770">QMD_LIST_CHECK_PREV</a>(elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f59ab30a8f9a88af86422600c38125cf">LIST_EMPTY</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;lh_first == NULL)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;lh_first)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c1543beeb6d9224b60feb7a2703b2a87">LIST_FOREACH</a>(var, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#2dd4b5313ff322ed89827dede22589e8">LIST_FOREACH_SAFE</a>(var, head, field, tvar)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#304b5b7f7bdcba2793eaba9c890991c3">LIST_INIT</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#ab62f53d4c94ab67bf7c4dc5c7670f64">LIST_INSERT_AFTER</a>(listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#73d12127b84f84215eb03a4fb20feebb">LIST_INSERT_BEFORE</a>(listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#d80d8d658fdb46a9f7cc81cb2ae54885">LIST_INSERT_HEAD</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.le_next)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#4f60a3fedbebc5ef6edded99062dd98d">LIST_REMOVE</a>(elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#4abce769a262e090c1f601605b9d6c76">TAILQ_HEAD</a>(name, type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c269df7d4126ed9885156cbad2cbf8af">TAILQ_HEAD_INITIALIZER</a>(head)&nbsp;&nbsp;&nbsp;{ NULL, &amp;(head).tqh_first }</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f71bfd90dc9d00fb03545fe66c67d673">TAILQ_ENTRY</a>(type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#fe4852d23c85543fafc53ad409461750">TAILQ_CONCAT</a>(head1, head2, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c3c9da7ac712eacbbad5cc54d7a3477e">TAILQ_EMPTY</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;tqh_first == NULL)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;tqh_first)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#16e5fc168e7f3494d4b1df54447d871e">TAILQ_FOREACH</a>(var, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#2a85f19896399eecd0ebf91cb8176166">TAILQ_FOREACH_SAFE</a>(var, head, field, tvar)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a7f65c910cd4616fcfa9723c5763b1a5">TAILQ_FOREACH_REVERSE</a>(var, head, headname, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a7841e4f848e470b9f2bc676473d7a5b">TAILQ_FOREACH_REVERSE_SAFE</a>(var, head, headname, field, tvar)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#449d224023780e46253b83b61e0a50a9">TAILQ_INIT</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f972e33f5eacef659ee0bf0a13ca518c">TAILQ_INSERT_AFTER</a>(head, listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c6a41e17dbc7d8df1f8b353a036754ff">TAILQ_INSERT_BEFORE</a>(listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f0f99e8f322ea4eef2d9deaa505239a6">TAILQ_INSERT_HEAD</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#512bee16b46f601078c96c776d2648c3">TAILQ_INSERT_TAIL</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c9154a9aebb3c15a3f2356349a1cc14f">TAILQ_LAST</a>(head, headname)&nbsp;&nbsp;&nbsp;(*(((struct headname *)((head)-&gt;tqh_last))-&gt;tqh_last))</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.tqe_next)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#524f93a0c21c390683fab4c27e840a10">TAILQ_PREV</a>(elm, headname, field)&nbsp;&nbsp;&nbsp;(*(((struct headname *)((elm)-&gt;field.tqe_prev))-&gt;tqh_last))</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#aae87ca18c28066e1a96221e762d1209">TAILQ_REMOVE</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#c564235b07f0c8c8db2a7957d37300ee">CIRCLEQ_HEAD</a>(name, type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#bc5774651e7db6bcecf18d2b92259707">CIRCLEQ_ENTRY</a>(type)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#5612649227a37a22f0b8b6420d5f2c92">CIRCLEQ_EMPTY</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_first == (void *)(head))</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#b6bde704fab7206d75cf540048cea723">CIRCLEQ_FIRST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_first)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#e97f4eb5724477c63699fafea4614b46">CIRCLEQ_FOREACH</a>(var, head, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#2c12c697981b6dbe21822ccdfd8decfd">CIRCLEQ_INIT</a>(head)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#108b36ff00cbf59efbbf185baac770b4">CIRCLEQ_INSERT_AFTER</a>(head, listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#f5cda165eacfbfe150e86c12baa96089">CIRCLEQ_INSERT_BEFORE</a>(head, listelm, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#2826789c50d93610c6c1e2f76651259a">CIRCLEQ_INSERT_HEAD</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a2b767125267fa26ca10e21fa358008c">CIRCLEQ_INSERT_TAIL</a>(head, elm, field)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#5e9a63e6896e72acbf0bdbdf45baeb1a">CIRCLEQ_LAST</a>(head)&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_last)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#7d1437823e61cb4941eee6a05705f567">CIRCLEQ_NEXT</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.cqe_next)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#e15b6cb06907211e1e5c621fdf0f4030">CIRCLEQ_PREV</a>(elm, field)&nbsp;&nbsp;&nbsp;((elm)-&gt;field.cqe_prev)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#e1b066e803ee2f2a3ead6e4c632b7e49">CIRCLEQ_REMOVE</a>(head, elm, field)</td></tr>
+
+</table>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="5612649227a37a22f0b8b6420d5f2c92"></a><!-- doxytag: member="queue.h::CIRCLEQ_EMPTY" ref="5612649227a37a22f0b8b6420d5f2c92" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_EMPTY          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_first == (void *)(head))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00459">459</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bc5774651e7db6bcecf18d2b92259707"></a><!-- doxytag: member="queue.h::CIRCLEQ_ENTRY" ref="bc5774651e7db6bcecf18d2b92259707" args="(type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_ENTRY          </td>
+          <td>(</td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>{                                                                \
+<span class="keyword">struct </span>type *cqe_next;          <span class="comment">/* next element */</span>              \
+<span class="keyword">struct </span>type *cqe_prev;          <span class="comment">/* previous element */</span>          \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00450">450</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b6bde704fab7206d75cf540048cea723"></a><!-- doxytag: member="queue.h::CIRCLEQ_FIRST" ref="b6bde704fab7206d75cf540048cea723" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_FIRST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_first)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00461">461</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e97f4eb5724477c63699fafea4614b46"></a><!-- doxytag: member="queue.h::CIRCLEQ_FOREACH" ref="e97f4eb5724477c63699fafea4614b46" args="(var, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_FOREACH          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span>((var) = (head)-&gt;cqh_first;                                  \
+(var) != (<span class="keywordtype">void</span> *)(head);                                        \
+(var) = (var)-&gt;field.cqe_next)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00463">463</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c564235b07f0c8c8db2a7957d37300ee"></a><!-- doxytag: member="queue.h::CIRCLEQ_HEAD" ref="c564235b07f0c8c8db2a7957d37300ee" args="(name, type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">name,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>name {                                                           \
+<span class="keyword">struct </span>type *cqh_first;         <span class="comment">/* first element */</span>             \
+<span class="keyword">struct </span>type *cqh_last;          <span class="comment">/* last element */</span>              \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00444">444</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2c12c697981b6dbe21822ccdfd8decfd"></a><!-- doxytag: member="queue.h::CIRCLEQ_INIT" ref="2c12c697981b6dbe21822ccdfd8decfd" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_INIT          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                            \
+(head)-&gt;cqh_first = (<span class="keywordtype">void</span> *)(head);                             \
+(head)-&gt;cqh_last = (<span class="keywordtype">void</span> *)(head);                              \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00468">468</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="108b36ff00cbf59efbbf185baac770b4"></a><!-- doxytag: member="queue.h::CIRCLEQ_INSERT_AFTER" ref="108b36ff00cbf59efbbf185baac770b4" args="(head, listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_INSERT_AFTER          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {            \
+(elm)-&gt;field.cqe_next = (listelm)-&gt;field.cqe_next;              \
+(elm)-&gt;field.cqe_prev = (listelm);                              \
+<span class="keywordflow">if</span> ((listelm)-&gt;field.cqe_next == (<span class="keywordtype">void</span> *)(head))                \
+(head)-&gt;cqh_last = (elm);                               \
+<span class="keywordflow">else</span>                                                            \
+(listelm)-&gt;field.cqe_next-&gt;field.cqe_prev = (elm);      \
+(listelm)-&gt;field.cqe_next = (elm);                              \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00473">473</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f5cda165eacfbfe150e86c12baa96089"></a><!-- doxytag: member="queue.h::CIRCLEQ_INSERT_BEFORE" ref="f5cda165eacfbfe150e86c12baa96089" args="(head, listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_INSERT_BEFORE          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {            \
+(elm)-&gt;field.cqe_next = (listelm);                              \
+(elm)-&gt;field.cqe_prev = (listelm)-&gt;field.cqe_prev;              \
+<span class="keywordflow">if</span> ((listelm)-&gt;field.cqe_prev == (<span class="keywordtype">void</span> *)(head))                \
+(head)-&gt;cqh_first = (elm);                              \
+<span class="keywordflow">else</span>                                                            \
+(listelm)-&gt;field.cqe_prev-&gt;field.cqe_next = (elm);      \
+(listelm)-&gt;field.cqe_prev = (elm);                              \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00483">483</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2826789c50d93610c6c1e2f76651259a"></a><!-- doxytag: member="queue.h::CIRCLEQ_INSERT_HEAD" ref="2826789c50d93610c6c1e2f76651259a" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_INSERT_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+(elm)-&gt;field.cqe_next = (head)-&gt;cqh_first;                      \
+(elm)-&gt;field.cqe_prev = (<span class="keywordtype">void</span> *)(head);                         \
+<span class="keywordflow">if</span> ((head)-&gt;cqh_last == (<span class="keywordtype">void</span> *)(head))                         \
+(head)-&gt;cqh_last = (elm);                               \
+<span class="keywordflow">else</span>                                                            \
+(head)-&gt;cqh_first-&gt;field.cqe_prev = (elm);              \
+(head)-&gt;cqh_first = (elm);                                      \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00493">493</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a2b767125267fa26ca10e21fa358008c"></a><!-- doxytag: member="queue.h::CIRCLEQ_INSERT_TAIL" ref="a2b767125267fa26ca10e21fa358008c" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_INSERT_TAIL          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+(elm)-&gt;field.cqe_next = (<span class="keywordtype">void</span> *)(head);                         \
+(elm)-&gt;field.cqe_prev = (head)-&gt;cqh_last;                       \
+<span class="keywordflow">if</span> ((head)-&gt;cqh_first == (<span class="keywordtype">void</span> *)(head))                        \
+(head)-&gt;cqh_first = (elm);                              \
+<span class="keywordflow">else</span>                                                            \
+(head)-&gt;cqh_last-&gt;field.cqe_next = (elm);               \
+(head)-&gt;cqh_last = (elm);                                       \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00503">503</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5e9a63e6896e72acbf0bdbdf45baeb1a"></a><!-- doxytag: member="queue.h::CIRCLEQ_LAST" ref="5e9a63e6896e72acbf0bdbdf45baeb1a" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_LAST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;cqh_last)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00513">513</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7d1437823e61cb4941eee6a05705f567"></a><!-- doxytag: member="queue.h::CIRCLEQ_NEXT" ref="7d1437823e61cb4941eee6a05705f567" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.cqe_next)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00515">515</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e15b6cb06907211e1e5c621fdf0f4030"></a><!-- doxytag: member="queue.h::CIRCLEQ_PREV" ref="e15b6cb06907211e1e5c621fdf0f4030" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_PREV          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.cqe_prev)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00517">517</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e1b066e803ee2f2a3ead6e4c632b7e49"></a><!-- doxytag: member="queue.h::CIRCLEQ_REMOVE" ref="e1b066e803ee2f2a3ead6e4c632b7e49" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIRCLEQ_REMOVE          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<span class="keywordflow">if</span> ((elm)-&gt;field.cqe_next == (<span class="keywordtype">void</span> *)(head))                    \
+(head)-&gt;cqh_last = (elm)-&gt;field.cqe_prev;               \
+<span class="keywordflow">else</span>                                                            \
+(elm)-&gt;field.cqe_next-&gt;field.cqe_prev =                 \
+(elm)-&gt;field.cqe_prev;                          \
+<span class="keywordflow">if</span> ((elm)-&gt;field.cqe_prev == (<span class="keywordtype">void</span> *)(head))                    \
+(head)-&gt;cqh_first = (elm)-&gt;field.cqe_next;              \
+<span class="keywordflow">else</span>                                                            \
+(elm)-&gt;field.cqe_prev-&gt;field.cqe_next =                 \
+(elm)-&gt;field.cqe_next;                          \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00519">519</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f59ab30a8f9a88af86422600c38125cf"></a><!-- doxytag: member="queue.h::LIST_EMPTY" ref="f59ab30a8f9a88af86422600c38125cf" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_EMPTY          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;lh_first == NULL)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00255">255</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ec2ccd0e8c215504508af23f04480be6"></a><!-- doxytag: member="queue.h::LIST_ENTRY" ref="ec2ccd0e8c215504508af23f04480be6" args="(type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_ENTRY          </td>
+          <td>(</td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>{                                                                \
+<span class="keyword">struct </span>type *le_next;   <span class="comment">/* next element */</span>                      \
+<span class="keyword">struct </span>type **le_prev;  <span class="comment">/* address of previous next element */</span>  \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00220">220</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8f223070a7fe7c5f24033e9d8fbeb610"></a><!-- doxytag: member="queue.h::LIST_FIRST" ref="8f223070a7fe7c5f24033e9d8fbeb610" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_FIRST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;lh_first)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00257">257</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c1543beeb6d9224b60feb7a2703b2a87"></a><!-- doxytag: member="queue.h::LIST_FOREACH" ref="c1543beeb6d9224b60feb7a2703b2a87" args="(var, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_FOREACH          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head));                                \
+(var);                                                  \
+(var) = <a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((var), field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00259">259</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2dd4b5313ff322ed89827dede22589e8"></a><!-- doxytag: member="queue.h::LIST_FOREACH_SAFE" ref="2dd4b5313ff322ed89827dede22589e8" args="(var, head, field, tvar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_FOREACH_SAFE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tvar&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head));                                \
+(var) &amp;&amp; ((tvar) = <a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((var), field), 1);         \
+(var) = (tvar))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00264">264</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e72219f63b2fe9bce774a64e11404179"></a><!-- doxytag: member="queue.h::LIST_HEAD" ref="e72219f63b2fe9bce774a64e11404179" args="(name, type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">name,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>name {                                                           \
+<span class="keyword">struct </span>type *lh_first;  <span class="comment">/* first element */</span>                     \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00212">212</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5d7b8e9f9968d3152a8519cd9a45312e"></a><!-- doxytag: member="queue.h::LIST_HEAD_INITIALIZER" ref="5d7b8e9f9968d3152a8519cd9a45312e" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_HEAD_INITIALIZER          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;{ NULL }</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00217">217</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="304b5b7f7bdcba2793eaba9c890991c3"></a><!-- doxytag: member="queue.h::LIST_INIT" ref="304b5b7f7bdcba2793eaba9c890991c3" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_INIT          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                            \
+<a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head)) = NULL;                                      \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00269">269</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ab62f53d4c94ab67bf7c4dc5c7670f64"></a><!-- doxytag: member="queue.h::LIST_INSERT_AFTER" ref="ab62f53d4c94ab67bf7c4dc5c7670f64" args="(listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_INSERT_AFTER          </td>
+          <td>(</td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#98d7f73cec635caf9515945f0d5413f6">QMD_LIST_CHECK_NEXT</a>(listelm, field);                            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field) = <a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((listelm), field)) != NULL)\
+<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((listelm), field)-&gt;field.le_prev =            \
+&amp;<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field);                               \
+<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((listelm), field) = (elm);                            \
+(elm)-&gt;field.le_prev = &amp;<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((listelm), field);            \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00273">273</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="73d12127b84f84215eb03a4fb20feebb"></a><!-- doxytag: member="queue.h::LIST_INSERT_BEFORE" ref="73d12127b84f84215eb03a4fb20feebb" args="(listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_INSERT_BEFORE          </td>
+          <td>(</td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#a03b790c1e9ea4475fff822f2f924770">QMD_LIST_CHECK_PREV</a>(listelm, field);                            \
+(elm)-&gt;field.le_prev = (listelm)-&gt;field.le_prev;                \
+<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field) = (listelm);                            \
+*(listelm)-&gt;field.le_prev = (elm);                              \
+(listelm)-&gt;field.le_prev = &amp;<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field);            \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00282">282</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d80d8d658fdb46a9f7cc81cb2ae54885"></a><!-- doxytag: member="queue.h::LIST_INSERT_HEAD" ref="d80d8d658fdb46a9f7cc81cb2ae54885" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_INSERT_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<a class="code" href="a00021.html#56b1069d0673242f84246986614b15cc">QMD_LIST_CHECK_HEAD</a>((head), field);                             \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field) = <a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head))) != NULL)     \
+<a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head))-&gt;field.le_prev = &amp;<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field);\
+<a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head)) = (elm);                                     \
+(elm)-&gt;field.le_prev = &amp;<a class="code" href="a00021.html#8f223070a7fe7c5f24033e9d8fbeb610">LIST_FIRST</a>((head));                     \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00290">290</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d150fcc4dc3e0a56600101f1f1065ed5"></a><!-- doxytag: member="queue.h::LIST_NEXT" ref="d150fcc4dc3e0a56600101f1f1065ed5" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.le_next)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00298">298</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4f60a3fedbebc5ef6edded99062dd98d"></a><!-- doxytag: member="queue.h::LIST_REMOVE" ref="4f60a3fedbebc5ef6edded99062dd98d" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIST_REMOVE          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                    \
+<a class="code" href="a00021.html#98d7f73cec635caf9515945f0d5413f6">QMD_LIST_CHECK_NEXT</a>(elm, field);                                \
+<a class="code" href="a00021.html#a03b790c1e9ea4475fff822f2f924770">QMD_LIST_CHECK_PREV</a>(elm, field);                                \
+<span class="keywordflow">if</span> (<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field) != NULL)                            \
+<a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field)-&gt;field.le_prev =                \
+(elm)-&gt;field.le_prev;                           \
+*(elm)-&gt;field.le_prev = <a class="code" href="a00021.html#d150fcc4dc3e0a56600101f1f1065ed5">LIST_NEXT</a>((elm), field);                \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.le_next);                                  \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.le_prev);                                  \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00300">300</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="56b1069d0673242f84246986614b15cc"></a><!-- doxytag: member="queue.h::QMD_LIST_CHECK_HEAD" ref="56b1069d0673242f84246986614b15cc" args="(head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QMD_LIST_CHECK_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00250">250</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="98d7f73cec635caf9515945f0d5413f6"></a><!-- doxytag: member="queue.h::QMD_LIST_CHECK_NEXT" ref="98d7f73cec635caf9515945f0d5413f6" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QMD_LIST_CHECK_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00251">251</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a03b790c1e9ea4475fff822f2f924770"></a><!-- doxytag: member="queue.h::QMD_LIST_CHECK_PREV" ref="a03b790c1e9ea4475fff822f2f924770" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QMD_LIST_CHECK_PREV          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00252">252</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="990f2617ebc37cd79c332e24ce7e4a88"></a><!-- doxytag: member="queue.h::QMD_TRACE_ELEM" ref="990f2617ebc37cd79c332e24ce7e4a88" args="(elem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QMD_TRACE_ELEM          </td>
+          <td>(</td>
+          <td class="paramtype">elem&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00031">31</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f8813e6512e6ac86e6b598241b1bf020"></a><!-- doxytag: member="queue.h::QMD_TRACE_HEAD" ref="f8813e6512e6ac86e6b598241b1bf020" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QMD_TRACE_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00032">32</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="59bcc4e6f4bf63b897bdc0644566c583"></a><!-- doxytag: member="queue.h::SLIST_EMPTY" ref="59bcc4e6f4bf63b897bdc0644566c583" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_EMPTY          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;slh_first == NULL)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00056">56</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5dd8bb1cef024ac008680e7e3b660332"></a><!-- doxytag: member="queue.h::SLIST_ENTRY" ref="5dd8bb1cef024ac008680e7e3b660332" args="(type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_ENTRY          </td>
+          <td>(</td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>{                                                                \
+<span class="keyword">struct </span>type *sle_next;  <span class="comment">/* next element */</span>                      \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00048">48</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="91bac7d0d32e3ec56bc579ace45ed8cd"></a><!-- doxytag: member="queue.h::SLIST_FIRST" ref="91bac7d0d32e3ec56bc579ace45ed8cd" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_FIRST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;slh_first)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00058">58</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="05db87878125c27e3060dd641aa3b0f4"></a><!-- doxytag: member="queue.h::SLIST_FOREACH" ref="05db87878125c27e3060dd641aa3b0f4" args="(var, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_FOREACH          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head));                               \
+(var);                                                  \
+(var) = <a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((var), field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00060">60</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7017f84f3ba90cd69441f09b2825f7b9"></a><!-- doxytag: member="queue.h::SLIST_FOREACH_PREVPTR" ref="7017f84f3ba90cd69441f09b2825f7b9" args="(var, varp, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_FOREACH_PREVPTR          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">varp,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((varp) = &amp;<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head));                             \
+((var) = *(varp)) != NULL;                                      \
+(varp) = &amp;<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((var), field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00070">70</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="feca7f301bcbd06a17821aa00e9d14d5"></a><!-- doxytag: member="queue.h::SLIST_FOREACH_SAFE" ref="feca7f301bcbd06a17821aa00e9d14d5" args="(var, head, field, tvar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_FOREACH_SAFE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tvar&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head));                               \
+(var) &amp;&amp; ((tvar) = <a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((var), field), 1);                \
+(var) = (tvar))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00065">65</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8224e40ea764bc857bab6f6d9c357dd9"></a><!-- doxytag: member="queue.h::SLIST_HEAD" ref="8224e40ea764bc857bab6f6d9c357dd9" args="(name, type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">name,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>name {                                                           \
+<span class="keyword">struct </span>type *slh_first; <span class="comment">/* first element */</span>                     \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00040">40</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9ae2aca3d46e62be4cb1408bd946ef15"></a><!-- doxytag: member="queue.h::SLIST_HEAD_INITIALIZER" ref="9ae2aca3d46e62be4cb1408bd946ef15" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_HEAD_INITIALIZER          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;{ NULL }</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00045">45</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="361ac8e88cf066cc4d46d28b54fd3031"></a><!-- doxytag: member="queue.h::SLIST_INIT" ref="361ac8e88cf066cc4d46d28b54fd3031" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_INIT          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                            \
+<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head)) = NULL;                                     \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00075">75</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f1d994d9652ccbc41a60b747dfc15ea5"></a><!-- doxytag: member="queue.h::SLIST_INSERT_AFTER" ref="f1d994d9652ccbc41a60b747dfc15ea5" args="(slistelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_INSERT_AFTER          </td>
+          <td>(</td>
+          <td class="paramtype">slistelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((elm), field) = <a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((slistelm), field);       \
+<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((slistelm), field) = (elm);                          \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00079">79</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="48df7439e09a419afabdd1f2f8551e73"></a><!-- doxytag: member="queue.h::SLIST_INSERT_HEAD" ref="48df7439e09a419afabdd1f2f8551e73" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_INSERT_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>((elm), field) = <a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head));                 \
+<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head)) = (elm);                                    \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00084">84</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7cd1d5ae37224ecee1f0b831eb73e7f4"></a><!-- doxytag: member="queue.h::SLIST_NEXT" ref="7cd1d5ae37224ecee1f0b831eb73e7f4" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.sle_next)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00089">89</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9c7950d61593ab9198524fca81b17ab0"></a><!-- doxytag: member="queue.h::SLIST_REMOVE" ref="9c7950d61593ab9198524fca81b17ab0" args="(head, elm, type, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_REMOVE          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<span class="keywordflow">if</span> (<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head)) == (elm)) {                             \
+<a class="code" href="a00021.html#eb10c664372b3b680455274170f4c897">SLIST_REMOVE_HEAD</a>((head), field);                       \
+}                                                               \
+<span class="keywordflow">else</span> {                                                          \
+<span class="keyword">struct </span>type *curelm = <a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head));              \
+<span class="keywordflow">while</span> (<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(curelm, field) != (elm))              \
+curelm = <a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(curelm, field);             \
+<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(curelm, field) =                             \
+<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(<a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(curelm, field), field);   \
+}                                                               \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.sle_next);                                 \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00091">91</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="eb10c664372b3b680455274170f4c897"></a><!-- doxytag: member="queue.h::SLIST_REMOVE_HEAD" ref="eb10c664372b3b680455274170f4c897" args="(head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLIST_REMOVE_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head)) = <a class="code" href="a00021.html#7cd1d5ae37224ecee1f0b831eb73e7f4">SLIST_NEXT</a>(<a class="code" href="a00021.html#91bac7d0d32e3ec56bc579ace45ed8cd">SLIST_FIRST</a>((head)), field);   \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00105">105</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="adfbe79db37e93cf528ae79a9aafb755"></a><!-- doxytag: member="queue.h::STAILQ_CONCAT" ref="adfbe79db37e93cf528ae79a9aafb755" args="(head1, head2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_CONCAT          </td>
+          <td>(</td>
+          <td class="paramtype">head1,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head2&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<span class="keywordflow">if</span> (!<a class="code" href="a00021.html#8427c8f43d09d73062cf6b37f303aff5">STAILQ_EMPTY</a>((head2))) {                                   \
+*(head1)-&gt;stqh_last = (head2)-&gt;stqh_first;              \
+(head1)-&gt;stqh_last = (head2)-&gt;stqh_last;                \
+<a class="code" href="a00021.html#3b508a1c06ded6b4ce4b1feea7643c28">STAILQ_INIT</a>((head2));                                   \
+}                                                               \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00129">129</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8427c8f43d09d73062cf6b37f303aff5"></a><!-- doxytag: member="queue.h::STAILQ_EMPTY" ref="8427c8f43d09d73062cf6b37f303aff5" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_EMPTY          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;stqh_first == NULL)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00137">137</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="765904f4fab4e7de1e2cd8ff351bc353"></a><!-- doxytag: member="queue.h::STAILQ_ENTRY" ref="765904f4fab4e7de1e2cd8ff351bc353" args="(type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_ENTRY          </td>
+          <td>(</td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>{                                                                \
+<span class="keyword">struct </span>type *stqe_next; <span class="comment">/* next element */</span>                      \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00121">121</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3e2eb7535019a2829399b24744dd1a66"></a><!-- doxytag: member="queue.h::STAILQ_FIRST" ref="3e2eb7535019a2829399b24744dd1a66" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_FIRST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;stqh_first)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00139">139</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="77999ebdf5aaf7af8b8ea22bf208c432"></a><!-- doxytag: member="queue.h::STAILQ_FOREACH" ref="77999ebdf5aaf7af8b8ea22bf208c432" args="(var, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_FOREACH          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span>((var) = <a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));                               \
+(var);                                                  \
+(var) = <a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((var), field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00141">141</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3203dcce73148c142df4586eb55ce55"></a><!-- doxytag: member="queue.h::STAILQ_FOREACH_SAFE" ref="c3203dcce73148c142df4586eb55ce55" args="(var, head, field, tvar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_FOREACH_SAFE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tvar&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));                              \
+(var) &amp;&amp; ((tvar) = <a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((var), field), 1);               \
+(var) = (tvar))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00147">147</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7b54f0de61925e7cf33184c2ec24da14"></a><!-- doxytag: member="queue.h::STAILQ_HEAD" ref="7b54f0de61925e7cf33184c2ec24da14" args="(name, type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">name,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>name {                                                           \
+<span class="keyword">struct </span>type *stqh_first;<span class="comment">/* first element */</span>                     \
+<span class="keyword">struct </span>type **stqh_last;<span class="comment">/* addr of last next element */</span>         \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00112">112</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3d41ce2c3f1dd21c0d4051d13204c321"></a><!-- doxytag: member="queue.h::STAILQ_HEAD_INITIALIZER" ref="3d41ce2c3f1dd21c0d4051d13204c321" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_HEAD_INITIALIZER          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;{ NULL, &amp;(head).stqh_first }</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00118">118</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3b508a1c06ded6b4ce4b1feea7643c28"></a><!-- doxytag: member="queue.h::STAILQ_INIT" ref="3b508a1c06ded6b4ce4b1feea7643c28" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_INIT          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                            \
+<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)) = NULL;                                    \
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));                      \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00152">152</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f6ebdaf4ccbde5e464273b8079e832b3"></a><!-- doxytag: member="queue.h::STAILQ_INSERT_AFTER" ref="f6ebdaf4ccbde5e464273b8079e832b3" args="(head, tqelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_INSERT_AFTER          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tqelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field) = <a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((tqelm), field)) == NULL)\
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field);         \
+<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((tqelm), field) = (elm);                            \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00157">157</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ad3b1fb87b675bae75334acd958b57dc"></a><!-- doxytag: member="queue.h::STAILQ_INSERT_HEAD" ref="ad3b1fb87b675bae75334acd958b57dc" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_INSERT_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field) = <a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head))) == NULL) \
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field);         \
+<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)) = (elm);                                   \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00163">163</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7bc9a31418b55c5698be3e54e10bb484"></a><!-- doxytag: member="queue.h::STAILQ_INSERT_TAIL" ref="7bc9a31418b55c5698be3e54e10bb484" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_INSERT_TAIL          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field) = NULL;                               \
+*(head)-&gt;stqh_last = (elm);                                     \
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field);                 \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00169">169</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e18d422917aa0b8efb0f58d92a19ae41"></a><!-- doxytag: member="queue.h::STAILQ_LAST" ref="e18d422917aa0b8efb0f58d92a19ae41" args="(head, type, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_LAST          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment">(<a class="code" href="a00021.html#8427c8f43d09d73062cf6b37f303aff5">STAILQ_EMPTY</a>((head)) ?                                         \
+NULL :                                                  \
+((<span class="keyword">struct </span>type *)(<span class="keywordtype">void</span> *)                                \
+((<span class="keywordtype">char</span> *)((head)-&gt;stqh_last) - __offsetof(<span class="keyword">struct</span> type, field))))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00175">175</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d89ac472696d006112dface9c2d75e47"></a><!-- doxytag: member="queue.h::STAILQ_NEXT" ref="d89ac472696d006112dface9c2d75e47" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.stqe_next)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00181">181</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a0d6665f277f80bf301a16e6ab2403c"></a><!-- doxytag: member="queue.h::STAILQ_REMOVE" ref="2a0d6665f277f80bf301a16e6ab2403c" args="(head, elm, type, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_REMOVE          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<span class="keywordflow">if</span> (<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)) == (elm)) {                            \
+<a class="code" href="a00021.html#24c16c7c5c9908022bad7a98ddac9740">STAILQ_REMOVE_HEAD</a>((head), field);                      \
+}                                                               \
+<span class="keywordflow">else</span> {                                                          \
+<span class="keyword">struct </span>type *curelm = <a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));             \
+<span class="keywordflow">while</span> (<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(curelm, field) != (elm))             \
+curelm = <a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(curelm, field);            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(curelm, field) =                       \
+<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(curelm, field), field)) == NULL)\
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((curelm), field);\
+}                                                               \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.stqe_next);                                \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00183">183</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="24c16c7c5c9908022bad7a98ddac9740"></a><!-- doxytag: member="queue.h::STAILQ_REMOVE_HEAD" ref="24c16c7c5c9908022bad7a98ddac9740" args="(head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_REMOVE_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)) =                                     \
+<a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>(<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)), field)) == NULL)              \
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));              \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00198">198</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ed257e38fe7f5f70c744109c29b3e960"></a><!-- doxytag: member="queue.h::STAILQ_REMOVE_HEAD_UNTIL" ref="ed257e38fe7f5f70c744109c29b3e960" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STAILQ_REMOVE_HEAD_UNTIL          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head)) = <a class="code" href="a00021.html#d89ac472696d006112dface9c2d75e47">STAILQ_NEXT</a>((elm), field)) == NULL) \
+(head)-&gt;stqh_last = &amp;<a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>((head));              \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00204">204</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fe4852d23c85543fafc53ad409461750"></a><!-- doxytag: member="queue.h::TAILQ_CONCAT" ref="fe4852d23c85543fafc53ad409461750" args="(head1, head2, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_CONCAT          </td>
+          <td>(</td>
+          <td class="paramtype">head1,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head2,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<span class="keywordflow">if</span> (!<a class="code" href="a00021.html#c3c9da7ac712eacbbad5cc54d7a3477e">TAILQ_EMPTY</a>(head2)) {                                      \
+*(head1)-&gt;tqh_last = (head2)-&gt;tqh_first;                \
+(head2)-&gt;tqh_first-&gt;field.tqe_prev = (head1)-&gt;tqh_last; \
+(head1)-&gt;tqh_last = (head2)-&gt;tqh_last;                  \
+<a class="code" href="a00021.html#449d224023780e46253b83b61e0a50a9">TAILQ_INIT</a>((head2));                                    \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head1);                                  \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head2);                                  \
+}                                                               \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00334">334</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3c9da7ac712eacbbad5cc54d7a3477e"></a><!-- doxytag: member="queue.h::TAILQ_EMPTY" ref="c3c9da7ac712eacbbad5cc54d7a3477e" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_EMPTY          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;tqh_first == NULL)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00345">345</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f71bfd90dc9d00fb03545fe66c67d673"></a><!-- doxytag: member="queue.h::TAILQ_ENTRY" ref="f71bfd90dc9d00fb03545fe66c67d673" args="(type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_ENTRY          </td>
+          <td>(</td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>{                                                                \
+<span class="keyword">struct </span>type *tqe_next;  <span class="comment">/* next element */</span>                      \
+<span class="keyword">struct </span>type **tqe_prev; <span class="comment">/* address of previous next element */</span>  \
+<a class="code" href="a00021.html#743488648fbd29bf4cf1addf004f43ef">TRACEBUF</a>                                                        \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00324">324</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7d6894360bd1c41e0e6f6d84998c1362"></a><!-- doxytag: member="queue.h::TAILQ_FIRST" ref="7d6894360bd1c41e0e6f6d84998c1362" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_FIRST          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((head)-&gt;tqh_first)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00347">347</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="16e5fc168e7f3494d4b1df54447d871e"></a><!-- doxytag: member="queue.h::TAILQ_FOREACH" ref="16e5fc168e7f3494d4b1df54447d871e" args="(var, head, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_FOREACH          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head));                               \
+(var);                                                  \
+(var) = <a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((var), field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00349">349</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a7f65c910cd4616fcfa9723c5763b1a5"></a><!-- doxytag: member="queue.h::TAILQ_FOREACH_REVERSE" ref="a7f65c910cd4616fcfa9723c5763b1a5" args="(var, head, headname, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_FOREACH_REVERSE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">headname,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#c9154a9aebb3c15a3f2356349a1cc14f">TAILQ_LAST</a>((head), headname);                      \
+(var);                                                  \
+(var) = <a class="code" href="a00021.html#524f93a0c21c390683fab4c27e840a10">TAILQ_PREV</a>((var), headname, field))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00359">359</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a7841e4f848e470b9f2bc676473d7a5b"></a><!-- doxytag: member="queue.h::TAILQ_FOREACH_REVERSE_SAFE" ref="a7841e4f848e470b9f2bc676473d7a5b" args="(var, head, headname, field, tvar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_FOREACH_REVERSE_SAFE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">headname,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tvar&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#c9154a9aebb3c15a3f2356349a1cc14f">TAILQ_LAST</a>((head), headname);                      \
+(var) &amp;&amp; ((tvar) = <a class="code" href="a00021.html#524f93a0c21c390683fab4c27e840a10">TAILQ_PREV</a>((var), headname, field), 1);      \
+(var) = (tvar))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00364">364</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a85f19896399eecd0ebf91cb8176166"></a><!-- doxytag: member="queue.h::TAILQ_FOREACH_SAFE" ref="2a85f19896399eecd0ebf91cb8176166" args="(var, head, field, tvar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_FOREACH_SAFE          </td>
+          <td>(</td>
+          <td class="paramtype">var,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tvar&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">for</span> ((var) = <a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head));                               \
+(var) &amp;&amp; ((tvar) = <a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((var), field), 1);                \
+(var) = (tvar))
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00354">354</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4abce769a262e090c1f601605b9d6c76"></a><!-- doxytag: member="queue.h::TAILQ_HEAD" ref="4abce769a262e090c1f601605b9d6c76" args="(name, type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">name,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keyword">struct </span>name {                                                           \
+<span class="keyword">struct </span>type *tqh_first; <span class="comment">/* first element */</span>                     \
+<span class="keyword">struct </span>type **tqh_last; <span class="comment">/* addr of last next element */</span>         \
+<a class="code" href="a00021.html#743488648fbd29bf4cf1addf004f43ef">TRACEBUF</a>                                                        \
+}
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00314">314</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c269df7d4126ed9885156cbad2cbf8af"></a><!-- doxytag: member="queue.h::TAILQ_HEAD_INITIALIZER" ref="c269df7d4126ed9885156cbad2cbf8af" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_HEAD_INITIALIZER          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;{ NULL, &amp;(head).tqh_first }</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00321">321</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="449d224023780e46253b83b61e0a50a9"></a><!-- doxytag: member="queue.h::TAILQ_INIT" ref="449d224023780e46253b83b61e0a50a9" args="(head)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_INIT          </td>
+          <td>(</td>
+          <td class="paramtype">head&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                                            \
+<a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head)) = NULL;                                     \
+(head)-&gt;tqh_last = &amp;<a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head));                        \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head);                                           \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00369">369</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f972e33f5eacef659ee0bf0a13ca518c"></a><!-- doxytag: member="queue.h::TAILQ_INSERT_AFTER" ref="f972e33f5eacef659ee0bf0a13ca518c" args="(head, listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_INSERT_AFTER          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field) = <a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((listelm), field)) != NULL)\
+<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field)-&gt;field.tqe_prev =              \
+&amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);                              \
+<span class="keywordflow">else</span> {                                                          \
+(head)-&gt;tqh_last = &amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);           \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head);                                   \
+}                                                               \
+<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((listelm), field) = (elm);                           \
+(elm)-&gt;field.tqe_prev = &amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((listelm), field);          \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;(elm)-&gt;field);                                  \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;listelm-&gt;field);                                \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00375">375</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c6a41e17dbc7d8df1f8b353a036754ff"></a><!-- doxytag: member="queue.h::TAILQ_INSERT_BEFORE" ref="c6a41e17dbc7d8df1f8b353a036754ff" args="(listelm, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_INSERT_BEFORE          </td>
+          <td>(</td>
+          <td class="paramtype">listelm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+(elm)-&gt;field.tqe_prev = (listelm)-&gt;field.tqe_prev;              \
+<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field) = (listelm);                           \
+*(listelm)-&gt;field.tqe_prev = (elm);                             \
+(listelm)-&gt;field.tqe_prev = &amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);          \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;(elm)-&gt;field);                                  \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;listelm-&gt;field);                                \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00389">389</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f0f99e8f322ea4eef2d9deaa505239a6"></a><!-- doxytag: member="queue.h::TAILQ_INSERT_HEAD" ref="f0f99e8f322ea4eef2d9deaa505239a6" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_INSERT_HEAD          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field) = <a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head))) != NULL)   \
+<a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head))-&gt;field.tqe_prev =                   \
+&amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);                              \
+<span class="keywordflow">else</span>                                                            \
+(head)-&gt;tqh_last = &amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);           \
+<a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head)) = (elm);                                    \
+(elm)-&gt;field.tqe_prev = &amp;<a class="code" href="a00021.html#7d6894360bd1c41e0e6f6d84998c1362">TAILQ_FIRST</a>((head));                   \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head);                                           \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;(elm)-&gt;field);                                  \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00398">398</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="512bee16b46f601078c96c776d2648c3"></a><!-- doxytag: member="queue.h::TAILQ_INSERT_TAIL" ref="512bee16b46f601078c96c776d2648c3" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_INSERT_TAIL          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                    \
+<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field) = NULL;                                \
+(elm)-&gt;field.tqe_prev = (head)-&gt;tqh_last;                       \
+*(head)-&gt;tqh_last = (elm);                                      \
+(head)-&gt;tqh_last = &amp;<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);                   \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head);                                           \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;(elm)-&gt;field);                                  \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00410">410</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c9154a9aebb3c15a3f2356349a1cc14f"></a><!-- doxytag: member="queue.h::TAILQ_LAST" ref="c9154a9aebb3c15a3f2356349a1cc14f" args="(head, headname)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_LAST          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">headname&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(*(((struct headname *)((head)-&gt;tqh_last))-&gt;tqh_last))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00419">419</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bd57fe9bdea6007a602f8c7d61bd5265"></a><!-- doxytag: member="queue.h::TAILQ_NEXT" ref="bd57fe9bdea6007a602f8c7d61bd5265" args="(elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_NEXT          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((elm)-&gt;field.tqe_next)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00422">422</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="524f93a0c21c390683fab4c27e840a10"></a><!-- doxytag: member="queue.h::TAILQ_PREV" ref="524f93a0c21c390683fab4c27e840a10" args="(elm, headname, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_PREV          </td>
+          <td>(</td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">headname,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(*(((struct headname *)((elm)-&gt;field.tqe_prev))-&gt;tqh_last))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00424">424</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aae87ca18c28066e1a96221e762d1209"></a><!-- doxytag: member="queue.h::TAILQ_REMOVE" ref="aae87ca18c28066e1a96221e762d1209" args="(head, elm, field)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAILQ_REMOVE          </td>
+          <td>(</td>
+          <td class="paramtype">head,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elm,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">field&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {                            \
+<span class="keywordflow">if</span> ((<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field)) != NULL)                         \
+<a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field)-&gt;field.tqe_prev =              \
+(elm)-&gt;field.tqe_prev;                          \
+<span class="keywordflow">else</span> {                                                          \
+(head)-&gt;tqh_last = (elm)-&gt;field.tqe_prev;               \
+<a class="code" href="a00021.html#f8813e6512e6ac86e6b598241b1bf020">QMD_TRACE_HEAD</a>(head);                                   \
+}                                                               \
+*(elm)-&gt;field.tqe_prev = <a class="code" href="a00021.html#bd57fe9bdea6007a602f8c7d61bd5265">TAILQ_NEXT</a>((elm), field);              \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.tqe_next);                                 \
+<a class="code" href="a00021.html#dee7bf054da0ade68bb853732c665a2b">TRASHIT</a>((elm)-&gt;field.tqe_prev);                                 \
+<a class="code" href="a00021.html#990f2617ebc37cd79c332e24ce7e4a88">QMD_TRACE_ELEM</a>(&amp;(elm)-&gt;field);                                  \
+} <span class="keywordflow">while</span> (0)
+</pre></div>
+<p>Definizione alla linea <a class="el" href="a00037.html#l00427">427</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="743488648fbd29bf4cf1addf004f43ef"></a><!-- doxytag: member="queue.h::TRACEBUF" ref="743488648fbd29bf4cf1addf004f43ef" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRACEBUF          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00033">33</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="dee7bf054da0ade68bb853732c665a2b"></a><!-- doxytag: member="queue.h::TRASHIT" ref="dee7bf054da0ade68bb853732c665a2b" args="(x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRASHIT          </td>
+          <td>(</td>
+          <td class="paramtype">x&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00037.html#l00034">34</a> del file <a class="el" href="a00037.html">queue.h</a>.</p>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

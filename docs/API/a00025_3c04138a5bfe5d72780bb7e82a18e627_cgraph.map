@@ -1,0 +1,15 @@
+<area shape="rect" id="node3" href="$a00027.html#g0de75477baa4d452a538a517c6589ca0" title="Inizializzazione I/O." alt="" coords="107,294,219,323">
+<area shape="rect" id="node9" href="$a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e" title="Inizializzazione MMU." alt="" coords="121,398,204,427">
+<area shape="rect" id="node15" href="$a00029.html#gc1fccac69c4c01abf39d7554137f0efe" title="Funzione per la creazione dei thread di tipo &quot;PROCESSO&quot;." alt="" coords="124,241,201,270">
+<area shape="rect" id="node27" href="$a00027.html#gbc58cac7b3c0bd4162719dd9f846a6ae" title="Determina l&#39;uscita del thread di I/O." alt="" coords="807,255,975,285">
+<area shape="rect" id="node38" href="$a00025.html#2ef30c42cbc289d899a8be5d2d8f77d0" title="Stampa la sinossi del programma." alt="" coords="132,451,193,481">
+<area shape="rect" id="node5" href="$a00015.html#28b5ceb23d706ad5bb7b3cb39b465ca0" title="Thread dispositivo I/O." alt="" coords="267,294,403,323">
+<area shape="rect" id="node7" href="$a00022.html#484d2e162b90ad46d32d1906577ab09a" title="La funzione restituisce un numero intero casuale nell&#39;intervallo compreso tra..." alt="" coords="633,191,748,221">
+<area shape="rect" id="node11" href="$a00028.html#g570ba5ab25cdc4950e1d62ea879fb385" title="Thread MMU." alt="" coords="281,398,388,427">
+<area shape="rect" id="node13" href="$a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4" title="Algoritmo di rimpiazzo della pagina." alt="" coords="451,398,576,427">
+<area shape="rect" id="node18" href="$a00029.html#gaf5abb1899913f9533a6fa9389d542d2" title="Thread per la simulazione di un processo." alt="" coords="284,113,385,142">
+<area shape="rect" id="node21" href="$a00027.html#g64fbfccf96403a1ccbdc4f4408f8adf5" title="Richiede un accesso al dispositivo di I/O." alt="" coords="453,33,573,62">
+<area shape="rect" id="node23" href="$a00028.html#gc23a1ee8fe6271110099f07ca81163ed" title="Funzione per la lettura/scrittura di una zona di memoria." alt="" coords="625,113,756,142">
+<area shape="rect" id="node29" href="$a00029.html#g0e5bbe010bad6f4740f6334c0454bba2" title="Effettua un accesso alla memoria con indirizzo casuale." alt="" coords="451,139,576,169">
+<area shape="rect" id="node33" href="$a00029.html#g3b8e883ce8a50b93217037bc3429253e" title="Simulazione d&#39;accesso ad un vettore di elementi." alt="" coords="457,86,569,115">
+<area shape="rect" id="node25" href="$a00029.html#g2b52a774545c4534786424f7d551d32c" title="Stampa lo stato delle pagine di un processo." alt="" coords="839,113,943,142">

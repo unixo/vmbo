@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Memory Management Unit</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Memory Management Unit</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4">second_chance</a> (int procnum, <a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00011.html">page</a>, int update_stats, <a class="el" href="a00003.html">frame_t</a> **<a class="el" href="a00003.html">frame</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Algoritmo di rimpiazzo della pagina.  <a href="#gbdc6ce22565ec4cc97a358429ffa5bd4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385">thread_mmu</a> (void *pArg)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thread MMU.  <a href="#g570ba5ab25cdc4950e1d62ea879fb385"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e">mmu_init</a> (int max_read, int ram_size, int page_size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inizializzazione MMU.  <a href="#gf97ffa8a4eade22efcc3545bb3c46d6e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed">memory_access</a> (int procnum, <a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> address, int rw)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funzione per la lettura/scrittura di una zona di memoria.  <a href="#gc23a1ee8fe6271110099f07ca81163ed"></a><br></td></tr>
+</table>
+<hr><h2>Documentazione delle funzioni</h2>
+<a class="anchor" name="gc23a1ee8fe6271110099f07ca81163ed"></a><!-- doxytag: member="mmu.c::memory_access" ref="gc23a1ee8fe6271110099f07ca81163ed" args="(int procnum, uint32_t address, int rw)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a> memory_access           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>procnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td>
+          <td class="paramname"> <em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rw</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Funzione per la lettura/scrittura di una zona di memoria. 
+<p>
+La funzione puo' essere invocata solo da un processo per volta: questa inserisce i dati della richiesta in una struttura temporanea condivisa con l'MMU, risveglia l'MMU perche' processi la richiesta e resta in attesa del risultato. <dl compact><dt><b>Parametri:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>procnum</em>&nbsp;</td><td>Identificativo processo nella <a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> table </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>address</em>&nbsp;</td><td>Indirizzo virtuale </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rw</em>&nbsp;</td><td>Se vale '0' effettua una lettura, '1' scrittura </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Restituisce:</b></dt><dd>Risultato dell'operazione. Restituisce -1 quando MMU ha raggiunto il numero massimo di operazioni ed il processo deve terminare la propria esecuzione. </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00460">460</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+<p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_gc23a1ee8fe6271110099f07ca81163ed_cgraph.png" border="0" usemap="#a00028_gc23a1ee8fe6271110099f07ca81163ed_cgraph_map" alt=""></center>
+<map name="a00028_gc23a1ee8fe6271110099f07ca81163ed_cgraph_map">
+<area shape="rect" id="node3" href="a00029.html#g2b52a774545c4534786424f7d551d32c" title="Stampa lo stato delle pagine di un processo." alt="" coords="220,5,324,35"><area shape="rect" id="node5" href="a00027.html#gbc58cac7b3c0bd4162719dd9f846a6ae" title="Determina l&#39;uscita del thread di I/O." alt="" coords="188,59,356,88"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_gc23a1ee8fe6271110099f07ca81163ed_icgraph.png" border="0" usemap="#a00028_gc23a1ee8fe6271110099f07ca81163ed_icgraph_map" alt=""></center>
+<map name="a00028_gc23a1ee8fe6271110099f07ca81163ed_icgraph_map">
+<area shape="rect" id="node3" href="a00029.html#g0e5bbe010bad6f4740f6334c0454bba2" title="Effettua un accesso alla memoria con indirizzo casuale." alt="" coords="187,5,312,35"><area shape="rect" id="node5" href="a00029.html#gaf5abb1899913f9533a6fa9389d542d2" title="Thread per la simulazione di un processo." alt="" coords="361,57,463,87"><area shape="rect" id="node11" href="a00029.html#g3b8e883ce8a50b93217037bc3429253e" title="Simulazione d&#39;accesso ad un vettore di elementi." alt="" coords="193,109,305,139"><area shape="rect" id="node7" href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe" title="Funzione per la creazione dei thread di tipo &quot;PROCESSO&quot;." alt="" coords="513,57,591,87"><area shape="rect" id="node9" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="640,57,693,87"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="gf97ffa8a4eade22efcc3545bb3c46d6e"></a><!-- doxytag: member="mmu.c::mmu_init" ref="gf97ffa8a4eade22efcc3545bb3c46d6e" args="(int max_read, int ram_size, int page_size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_t * mmu_init           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>max_read</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>ram_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>page_size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Inizializzazione MMU. 
+<p>
+La funzione inizializza il modulo MMU, valorizzando la variabile "mmu" con i parametri che descrivono l'ambiente. I valori total_access, page_size e ram_size sono modificabili mediante l'uso degli opportuni parametri da riga di comando. Una volta suddivisa la memoria in <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>, verra' creato il thread MMU. <dl compact><dt><b>Parametri:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>max_read</em>&nbsp;</td><td>Numero massimo di accessi alla memoria </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ram_size</em>&nbsp;</td><td>Dimensione complessiva della memoria principale </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>page_size</em>&nbsp;</td><td>Dimensione della singola pagina/frame </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Restituisce:</b></dt><dd>Puntatore al thread ID della MMU </dd></dl>
+<dl class="see" compact><dt><b>Vedi anche:</b></dt><dd><a class="el" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385" title="Thread MMU.">thread_mmu</a> </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00400">400</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+<p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_cgraph.png" border="0" usemap="#a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_cgraph_map" alt=""></center>
+<map name="a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_cgraph_map">
+<area shape="rect" id="node3" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385" title="Thread MMU." alt="" coords="140,5,247,35"><area shape="rect" id="node5" href="a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4" title="Algoritmo di rimpiazzo della pagina." alt="" coords="296,5,421,35"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_icgraph.png" border="0" usemap="#a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_icgraph_map" alt=""></center>
+<map name="a00028_gf97ffa8a4eade22efcc3545bb3c46d6e_icgraph_map">
+<area shape="rect" id="node3" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="139,5,192,35"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="gbdc6ce22565ec4cc97a358429ffa5bd4"></a><!-- doxytag: member="mmu.c::second_chance" ref="gbdc6ce22565ec4cc97a358429ffa5bd4" args="(int procnum, uint16_t page, int update_stats, frame_t **frame)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int second_chance           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>procnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td>
+          <td class="paramname"> <em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>update_stats</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00003.html">frame_t</a> **&nbsp;</td>
+          <td class="paramname"> <em>frame</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Algoritmo di rimpiazzo della pagina. 
+<p>
+La funzione second_chance viene invocata direttamente dal thread "mmu": scopo di questa funzione e trovare una pagina da rimuovere dalla memoria ed associare il <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> appena liberato con la pagina che ha generato il fault. <dl compact><dt><b>Parametri:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>procnum</em>&nbsp;</td><td>Identificativo del processo chiamante </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a></em>&nbsp;</td><td>Pagina virtuale che ha generato il fault </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>update_stats</em>&nbsp;</td><td>Se vale uno (1) vengono aggiornate le statistiche </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a></em>&nbsp;</td><td>Se diverso da NULL, viene registrato il <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> identificato </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Restituisce:</b></dt><dd>restituisce 1 se e stato un <a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> hit, 0 per un fault </dd></dl>
+<dl class="see" compact><dt><b>Vedi anche:</b></dt><dd><a class="el" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385" title="Thread MMU.">thread_mmu</a> </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00104">104</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+<p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_gbdc6ce22565ec4cc97a358429ffa5bd4_icgraph.png" border="0" usemap="#a00028_gbdc6ce22565ec4cc97a358429ffa5bd4_icgraph_map" alt=""></center>
+<map name="a00028_gbdc6ce22565ec4cc97a358429ffa5bd4_icgraph_map">
+<area shape="rect" id="node3" href="a00028.html#g570ba5ab25cdc4950e1d62ea879fb385" title="Thread MMU." alt="" coords="180,5,287,35"><area shape="rect" id="node5" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e" title="Inizializzazione MMU." alt="" coords="337,5,420,35"><area shape="rect" id="node7" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="469,5,523,35"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="g570ba5ab25cdc4950e1d62ea879fb385"></a><!-- doxytag: member="mmu.c::thread_mmu" ref="g570ba5ab25cdc4950e1d62ea879fb385" args="(void *pArg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * thread_mmu           </td>
+          <td>(</td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>pArg</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Thread MMU. 
+<p>
+La funzione, eseguita come thread, emula il modulo MMU per la traduzione degli indirizzi virtuali in fisici e l'implementazione dell'algoritmo enhanced sencond chance <dl compact><dt><b>Parametri:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>pArg</em>&nbsp;</td><td>inutilizzato </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Restituisce:</b></dt><dd>valore di uscita del thread (inutilizzato) </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00033.html#l00295">295</a> del file <a class="el" href="a00033.html">mmu.c</a>.</p>
+
+<p>
+<div class="dynheader">
+Questo è il grafo delle chiamate per questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_g570ba5ab25cdc4950e1d62ea879fb385_cgraph.png" border="0" usemap="#a00028_g570ba5ab25cdc4950e1d62ea879fb385_cgraph_map" alt=""></center>
+<map name="a00028_g570ba5ab25cdc4950e1d62ea879fb385_cgraph_map">
+<area shape="rect" id="node3" href="a00028.html#gbdc6ce22565ec4cc97a358429ffa5bd4" title="Algoritmo di rimpiazzo della pagina." alt="" coords="163,5,288,35"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Questo è il grafo dei chiamanti di questa funzione:</div>
+<div class="dynsection">
+<p><center><img src="a00028_g570ba5ab25cdc4950e1d62ea879fb385_icgraph.png" border="0" usemap="#a00028_g570ba5ab25cdc4950e1d62ea879fb385_icgraph_map" alt=""></center>
+<map name="a00028_g570ba5ab25cdc4950e1d62ea879fb385_icgraph_map">
+<area shape="rect" id="node3" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e" title="Inizializzazione MMU." alt="" coords="164,5,247,35"><area shape="rect" id="node5" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="296,5,349,35"></map>
+</div>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct io_dev_data</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct io_dev_data</h1><!-- doxytag: class="io_dev_data" -->Struttura per la configurazione del dispositivo di I/O. Il campo "req_count" viene incrementato quando una nuova richiesta di I/O viene inserita nella coda. Il tempo entro il quale viene servita la richiesta e' limitato inferiormente da Tmin e superiormente da Tmax.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00032.html">io_device.h</a>&gt;</code>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Struttura per la configurazione del dispositivo di I/O. Il campo "req_count" viene incrementato quando una nuova richiesta di I/O viene inserita nella coda. Il tempo entro il quale viene servita la richiesta e' limitato inferiormente da Tmin e superiormente da Tmax. 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00051">51</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="7f01b0794446b03973f95d90366d6b0d"></a><!-- doxytag: member="io_dev_data::req_count" ref="7f01b0794446b03973f95d90366d6b0d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di richieste in coda 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00057">57</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9bbf50bca5b547265a82ba1bebdabe10"></a><!-- doxytag: member="io_dev_data::Tmax" ref="9bbf50bca5b547265a82ba1bebdabe10" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tempo massimo di attesa per espletare una richiesta di I/O 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00055">55</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bd46861dcc5c0e074332fd481f72c4dc"></a><!-- doxytag: member="io_dev_data::Tmin" ref="bd46861dcc5c0e074332fd481f72c4dc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tempo minimo di attesa per espletare una richiesta di I/O 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00053">53</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00032.html">io_device.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

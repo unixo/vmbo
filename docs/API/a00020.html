@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/proc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/proc.h</h1><code>#include &lt;pthread.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="a00040.html">vm_types.h</a>&quot;</code><br>
+
+<p>
+<div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dynsection">
+<p><center><img src="a00045.png" border="0" usemap="#vmbo/src/proc.hdep_map" alt=""></center>
+<map name="vmbo/src/proc.hdep_map">
+<area shape="rect" id="node3" href="a00016.html" title="vmbo/src/io_device.h" alt="" coords="239,83,399,112"><area shape="rect" id="node7" href="a00018.html" title="vmbo/src/mmu.h" alt="" coords="136,160,267,189"><area shape="rect" id="node11" href="a00019.html" title="vmbo/src/proc.c" alt="" coords="424,237,552,267"><area shape="rect" id="node13" href="a00025.html" title="vmbo/src/vmbo.c" alt="" coords="5,237,141,267"><area shape="rect" id="node5" href="a00015.html" title="vmbo/src/io_device.c" alt="" coords="291,160,451,189"><area shape="rect" id="node9" href="a00017.html" title="vmbo/src/mmu.c" alt="" coords="165,237,296,267"></map>
+</div>
+
+<p>
+<a href="a00036.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Strutture dati</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html">proc</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struttura per la rappresentazione in memoria di un processo.  <a href="a00012.html#_details">Continua...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00013.html">proc::proc_stats</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#919acc831c71cb87d455b05e90c12ef5">LOG_FILE</a>(n)&nbsp;&nbsp;&nbsp;(<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[n]-&gt;log_file)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">File di log del processo.  <a href="#919acc831c71cb87d455b05e90c12ef5"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef struct <a class="el" href="a00012.html">proc</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#1dadaf96a101d1e40affea2b0f27c12f">proc_t</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo di dato proc_t da struct <a class="el" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc</a>.  <a href="#1dadaf96a101d1e40affea2b0f27c12f"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe">proc_init</a> (int, int, int, int, char *, int)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funzione per la creazione dei thread di tipo "PROCESSO".  <a href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#g2b52a774545c4534786424f7d551d32c">process_info</a> (int)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stampa lo stato delle pagine di un processo.  <a href="a00029.html#g2b52a774545c4534786424f7d551d32c"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+<dl class="author" compact><dt><b>Autore:</b></dt><dd>Ferruccio Vitale (<a href="mailto:unixo@devzero.it">unixo@devzero.it</a>) </dd></dl>
+<dl class="date" compact><dt><b>Data:</b></dt><dd>21/04/2009</dd></dl>
+<dl class="note" compact><dt><b>Nota:</b></dt><dd>Universita' degli studi di Urbino "Carlo Bo"<br>
+ Sistemi Operativi<br>
+ Professore Emanuele Lattanzi<br>
+ Anno Accademico 2008 - 2009 </dd></dl>
+
+<p>Definizione nel file <a class="el" href="a00036.html">proc.h</a>.</p>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="919acc831c71cb87d455b05e90c12ef5"></a><!-- doxytag: member="proc.h::LOG_FILE" ref="919acc831c71cb87d455b05e90c12ef5" args="(n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_FILE          </td>
+          <td>(</td>
+          <td class="paramtype">n&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[n]-&gt;log_file)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+File di log del processo. 
+<p>
+Restituisce il puntatore a FILE, equivalente al file di log delle attivita del processo stesso; il file viene aperto dalla funzione proc_init e chiuso dal processo stesso durante la chiusura. 
+<p>Definizione alla linea <a class="el" href="a00036.html#l00025">25</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a class="anchor" name="1dadaf96a101d1e40affea2b0f27c12f"></a><!-- doxytag: member="proc.h::proc_t" ref="1dadaf96a101d1e40affea2b0f27c12f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00012.html">proc</a> <a class="el" href="a00012.html">proc_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo di dato proc_t da struct <a class="el" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc</a>. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00036.html#l00069">69</a> del file <a class="el" href="a00036.html">proc.h</a>.</p>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

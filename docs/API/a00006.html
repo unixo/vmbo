@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct io_entry</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct io_entry</h1><!-- doxytag: class="io_entry" -->Struttura per la rappresentazione di una richiesta d'I/O.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00032.html">io_device.h</a>&gt;</code>
+<p>
+<div class="dynheader">
+Diagramma di collaborazione per io_entry:</div>
+<div class="dynsection">
+<p><center><img src="a00061.png" border="0" usemap="#a00062" alt="Collaboration graph"></center>
+<center><font size="2">[<a href="graph_legend.html">legenda</a>]</font></center></div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#9089e9c40db82122a499b9620e2cb54e">pid</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap>struct {</td></tr>
+
+<tr><td class="memItemLeft" nowrap>&nbsp;&nbsp;&nbsp;struct <a class="el" href="a00006.html">io_entry</a> *&nbsp;&nbsp;&nbsp;<a class="el" href="a00006.html#3f3557f44ba701d4395dbce8f82dff73">stqe_next</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap valign="top">}&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#a9df106c2dc27bc0c48bf29bdc28927d">entries</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Struttura per la rappresentazione di una richiesta d'I/O. 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00029">29</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="a9df106c2dc27bc0c48bf29bdc28927d"></a><!-- doxytag: member="io_entry::entries" ref="a9df106c2dc27bc0c48bf29bdc28927d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   <a class="el" href="a00006.html#a9df106c2dc27bc0c48bf29bdc28927d">entries</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+puntatore al successivo elemento della FIFO 
+</div>
+</div><p>
+<a class="anchor" name="9089e9c40db82122a499b9620e2cb54e"></a><!-- doxytag: member="io_entry::pid" ref="9089e9c40db82122a499b9620e2cb54e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00006.html#9089e9c40db82122a499b9620e2cb54e">pid</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+il PID del processo che ha effettuato la richiesta 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00031">31</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2ff0507ae66e3e57f919445037f8db1d"></a><!-- doxytag: member="io_entry::procnum" ref="2ff0507ae66e3e57f919445037f8db1d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+identificativo del processo all'interno della "proc table" 
+<p>Definizione alla linea <a class="el" href="a00032.html#l00033">33</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3f3557f44ba701d4395dbce8f82dff73"></a><!-- doxytag: member="io_entry::stqe_next" ref="3f3557f44ba701d4395dbce8f82dff73" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00006.html">io_entry</a>* <a class="el" href="a00006.html#3f3557f44ba701d4395dbce8f82dff73">stqe_next</a><code> [read]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00032.html#l00035">35</a> del file <a class="el" href="a00032.html">io_device.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00032.html">io_device.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

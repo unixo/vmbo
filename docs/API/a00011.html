@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per la struct page</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&nbsp;delle&nbsp;strutture&nbsp;dati</span></a></li>
+      <li><a href="functions.html"><span>Campi&nbsp;dei&nbsp;dati</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per la struct page</h1><!-- doxytag: class="page" -->Struttura per la rappresentazione di una pagina virtuale.  
+<a href="#_details">Continua...</a>
+<p>
+<code>#include &lt;<a class="el" href="a00040.html">vm_types.h</a>&gt;</code>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Campi</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#4fc3a0c58dfbd1e68224521185cb9384">id</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#0ece58bcf125edef002fd8cc75f8d6da">present</a>:1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#af215a3c05140d166ae6441c061d0643">reference</a>:1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#120b75c12097e7fdda71535d04ae7880">dirty</a>:1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html#ee084224c146556b8fa176ded51352d7">frame_id</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+Struttura per la rappresentazione di una pagina virtuale. 
+<p>
+E' la funzione proc_init ad avere il compito di creare la tabella delle pagine per ogni processo; ogni voce in tabella sara' del tipo "struct page". 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00055">55</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+<hr><h2>Documentazione dei campi</h2>
+<a class="anchor" name="120b75c12097e7fdda71535d04ae7880"></a><!-- doxytag: member="page::dirty" ref="120b75c12097e7fdda71535d04ae7880" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00011.html#120b75c12097e7fdda71535d04ae7880">dirty</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Se vale 1, la pagina e' stata modificata di recente 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00063">63</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ee084224c146556b8fa176ded51352d7"></a><!-- doxytag: member="page::frame_id" ref="ee084224c146556b8fa176ded51352d7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00011.html#ee084224c146556b8fa176ded51352d7">frame_id</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Se la pagina e' presente in memoria, questo e' l'ID del <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> associato 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00065">65</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4fc3a0c58dfbd1e68224521185cb9384"></a><!-- doxytag: member="page::id" ref="4fc3a0c58dfbd1e68224521185cb9384" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> <a class="el" href="a00011.html#4fc3a0c58dfbd1e68224521185cb9384">id</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Identificativo della pagina 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00057">57</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0ece58bcf125edef002fd8cc75f8d6da"></a><!-- doxytag: member="page::present" ref="0ece58bcf125edef002fd8cc75f8d6da" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00011.html#0ece58bcf125edef002fd8cc75f8d6da">present</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Se vale 1, la pagina e' presente in memoria 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00059">59</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="af215a3c05140d166ae6441c061d0643"></a><!-- doxytag: member="page::reference" ref="af215a3c05140d166ae6441c061d0643" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00011.html#af215a3c05140d166ae6441c061d0643">reference</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Se vale 1, la pagina e' stata referenziata di recente 
+<p>Definizione alla linea <a class="el" href="a00040.html#l00061">61</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li>vmbo/src/<a class="el" href="a00040.html">vm_types.h</a></ul>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

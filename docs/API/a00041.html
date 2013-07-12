@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO:  File sorgente vmbo/src/vmbo.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<h1>vmbo/src/vmbo.c</h1><a href="a00025.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00040"></a>00040 <span class="preprocessor">#include "<a class="code" href="a00026.html">vmbo.h</a>"</span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include "<a class="code" href="a00018.html">mmu.h</a>"</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include "<a class="code" href="a00020.html">proc.h</a>"</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include "<a class="code" href="a00016.html">io_device.h</a>"</span>
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="keyword">extern</span> <a class="code" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc_t</a> **<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>;
+<a name="l00046"></a>00046 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a>;
+<a name="l00047"></a>00047 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00017.html#e4cc024f7d0cb7543216fc463ab91af3" title="Indica se la paginazione anticipata risulta attiva.">anticipatory_paging</a>;
+<a name="l00048"></a>00048 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a>;
+<a name="l00049"></a>00049 <span class="keyword">extern</span> <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> *<a class="code" href="a00019.html#7f1b05703d4a8a19186f95ba1641cb70" title="Reference string.">reference_string</a>;
+<a name="l00050"></a>00050 
+<a name="l00057"></a><a class="code" href="a00025.html#c3e1795766a80ec63b157951b4b9a7d4">00057</a> <span class="keywordtype">int</span> <a class="code" href="a00017.html#c3e1795766a80ec63b157951b4b9a7d4" title="Livello di debug.">debug</a>;
+<a name="l00058"></a>00058 
+<a name="l00063"></a><a class="code" href="a00025.html#94965649155359a4c4eb047af782bf22">00063</a> <span class="keyword">static</span> <span class="keyword">struct </span><a class="code" href="a00010.html" title="Parametri da riga di comando (versione lunga).">option</a> <a class="code" href="a00025.html#94965649155359a4c4eb047af782bf22">longopts</a>[] = {
+<a name="l00064"></a>00064     { <span class="stringliteral">"anticipatory"</span>, no_argument, NULL, <span class="charliteral">'a'</span> },
+<a name="l00065"></a>00065     { <span class="stringliteral">"debug"</span>, no_argument, NULL, <span class="charliteral">'d'</span> },
+<a name="l00066"></a>00066     { <span class="stringliteral">"help"</span>, no_argument, NULL, <span class="charliteral">'h'</span> },
+<a name="l00067"></a>00067     { <span class="stringliteral">"locality"</span>,  required_argument, NULL, <span class="charliteral">'L'</span> },
+<a name="l00068"></a>00068     { <span class="stringliteral">"probabilities"</span>, required_argument, NULL, <span class="charliteral">'l'</span> },
+<a name="l00069"></a>00069     { <span class="stringliteral">"all-memory"</span>, no_argument, NULL, <span class="charliteral">'M'</span> },
+<a name="l00070"></a>00070     { <span class="stringliteral">"memory-read"</span>, required_argument, NULL, <span class="charliteral">'m'</span> },
+<a name="l00071"></a>00071     { <span class="stringliteral">"processes"</span>, required_argument, NULL, <span class="charliteral">'p'</span> },
+<a name="l00072"></a>00072     { <span class="stringliteral">"probability"</span>, required_argument, NULL, <span class="charliteral">'P'</span> },
+<a name="l00073"></a>00073     { <span class="stringliteral">"reference"</span>, required_argument, NULL, <span class="charliteral">'r'</span> },
+<a name="l00074"></a>00074     { <span class="stringliteral">"ram-size"</span>, required_argument, NULL, <span class="charliteral">'R'</span> },
+<a name="l00075"></a>00075     { <span class="stringliteral">"frame-size"</span>, required_argument, NULL, <span class="charliteral">'s'</span> },
+<a name="l00076"></a>00076     { <span class="stringliteral">"Tmin"</span>, required_argument, NULL, <span class="charliteral">'t'</span> },
+<a name="l00077"></a>00077     { <span class="stringliteral">"Tmax"</span>, required_argument, NULL, <span class="charliteral">'T'</span> },
+<a name="l00078"></a>00078     { <span class="stringliteral">"write-enabled"</span>, no_argument, NULL, <span class="charliteral">'w'</span> },
+<a name="l00079"></a>00079     { <span class="stringliteral">"version"</span>, no_argument, NULL, <span class="charliteral">'v'</span> },
+<a name="l00080"></a>00080     { NULL, 0, NULL, 0 }
+<a name="l00081"></a>00081 };  
+<a name="l00082"></a>00082 
+<a name="l00090"></a><a class="code" href="a00025.html#2ef30c42cbc289d899a8be5d2d8f77d0">00090</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00025.html#2ef30c42cbc289d899a8be5d2d8f77d0" title="Stampa la sinossi del programma.">usage</a>()
+<a name="l00091"></a>00091 {
+<a name="l00092"></a>00092     fprintf(stderr, <span class="stringliteral">"Utilizzo: vmbo [OPZIONI]...\n\n"</span>
+<a name="l00093"></a>00093             <span class="stringliteral">"Opzioni generali:\n"</span>
+<a name="l00094"></a>00094             <span class="stringliteral">"  -h, --help                Stampa questo help\n"</span>
+<a name="l00095"></a>00095             <span class="stringliteral">"  -v, --version             Stampa la versione del programma ed esce\n"</span>
+<a name="l00096"></a>00096             <span class="stringliteral">"  -d, --debug               Attiva il debug\n\n"</span>
+<a name="l00097"></a>00097             <span class="stringliteral">"Opzioni MMU:\n"</span>
+<a name="l00098"></a>00098             <span class="stringliteral">"  -a, --anticipatory        Disabilita l'anticipatory paging\n"</span>
+<a name="l00099"></a>00099             <span class="stringliteral">"  -m, --memory-read=NUM     Numero massimo di accessi alla memoria\n"</span>
+<a name="l00100"></a>00100             <span class="stringliteral">"  -R, --ram-size=NUM        Quantita di RAM disponibile\n"</span>
+<a name="l00101"></a>00101             <span class="stringliteral">"  -s, --frame-size=NUM      Dimensione della pagina/frame\n"</span>
+<a name="l00102"></a>00102             <span class="stringliteral">"  -w, --write-enabled       Abilita gli accessi in scrittura alla memoria\n\n"</span>
+<a name="l00103"></a>00103             <span class="stringliteral">"Opzioni PROCESSO:\n"</span>
+<a name="l00104"></a>00104             <span class="stringliteral">"  -M, --all-memory          Forza i processi ad allocare il massimo della memoria\n"</span>
+<a name="l00105"></a>00105             <span class="stringliteral">"  -p, --processes=NUM       Numero di processi contemporanei\n"</span>
+<a name="l00106"></a>00106             <span class="stringliteral">"  -P, --probability=NUM     Probabilita di accessi alla memoria\n"</span>
+<a name="l00107"></a>00107             <span class="stringliteral">"  -l, --probabilities=LIST  Specifica la probabilta per ogni processo\n"</span>
+<a name="l00108"></a>00108             <span class="stringliteral">"  -L, --locality=NUM        Specifica la percentuale di localita temporale\n"</span>
+<a name="l00109"></a>00109             <span class="stringliteral">"  -r, --reference=LIST      Specifica la reference string da usare\n\n"</span>
+<a name="l00110"></a>00110             <span class="stringliteral">"Opzioni DISPOSITIVO I/O:\n"</span>
+<a name="l00111"></a>00111             <span class="stringliteral">"  -t, --Tmin=NUM            Tempo minimo d'attesa del dispositivo I/O\n"</span>
+<a name="l00112"></a>00112             <span class="stringliteral">"  -t, --Tmax=NUM            Tempo massimo d'attesa del dispositivo I/O\n\n"</span>);
+<a name="l00113"></a>00113     fprintf(stderr, <span class="stringliteral">"Esempi d'utilizzo:\n"</span>
+<a name="l00114"></a>00114             <span class="stringliteral">" - Esegue 7 processi contemporanei ed effettua 10 letture\n"</span>
+<a name="l00115"></a>00115             <span class="stringliteral">"   vmbo --max-read=10 --max-processes=7\n"</span>
+<a name="l00116"></a>00116             <span class="stringliteral">" - Esegue 3 processi, specificando il ritardo per il dispositivo I/O\n"</span>
+<a name="l00117"></a>00117             <span class="stringliteral">"   vmbo --max-processes=3 --Tmin=2 --Tmax=30\n"</span>
+<a name="l00118"></a>00118             <span class="stringliteral">" - Specifica la probabilita' di effettuare un accesso alla memoria\n"</span> 
+<a name="l00119"></a>00119             <span class="stringliteral">"   vmbo --probability=30\n"</span>
+<a name="l00120"></a>00120             <span class="stringliteral">" - Specifica una probabilita' diversa per ogni processo\n"</span>
+<a name="l00121"></a>00121             <span class="stringliteral">"   vmbo --probabilities=30:20:78:93:80\n"</span>
+<a name="l00122"></a>00122             <span class="stringliteral">" - Specifica una reference string per determinare gli accessi\n"</span>
+<a name="l00123"></a>00123             <span class="stringliteral">"   vmbo --reference=1:2:3:4:1:2:5:1:2:3:4:5\n\n"</span>);
+<a name="l00124"></a>00124 }
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 <span class="keywordtype">int</span> 
+<a name="l00128"></a><a class="code" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627">00128</a> <a class="code" href="a00025.html#3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)
+<a name="l00129"></a>00129 {
+<a name="l00130"></a>00130     pthread_t *tid_mmu, *tid_iodev;
+<a name="l00131"></a>00131     <span class="keywordtype">int</span> i, time_seed, ch, error, _Tmin, _Tmax, _max_memory, _locality_prob,
+<a name="l00132"></a>00132     _prob, _max_read, _frame_size, _only_read, _ram_size, io_time_elapsed,
+<a name="l00133"></a>00133     option_index, allocated_pages, total_faults;
+<a name="l00134"></a>00134     <span class="keywordtype">char</span> *prob_list, *_reference_string;
+<a name="l00135"></a>00135     
+<a name="l00136"></a>00136     <span class="comment">/*</span>
+<a name="l00137"></a>00137 <span class="comment">     *  Analisi dei parametri specificati da riga di comando: definisco prima</span>
+<a name="l00138"></a>00138 <span class="comment">     *  i valori di default utili all'inizializzazione dei singoli thread e</span>
+<a name="l00139"></a>00139 <span class="comment">     *  procedo all'analisi di "argv". Qualora siano stati specificati</span>
+<a name="l00140"></a>00140 <span class="comment">     *  parametri inesistenti o siano presenti errori, la variabile "error"</span>
+<a name="l00141"></a>00141 <span class="comment">     *  verra' impostata ad uno (1) ed il programma terminera' la propria </span>
+<a name="l00142"></a>00142 <span class="comment">     *  esecuzione.</span>
+<a name="l00143"></a>00143 <span class="comment">     */</span>
+<a name="l00144"></a>00144     option_index = 0;
+<a name="l00145"></a>00145     error = 0;
+<a name="l00146"></a>00146     _max_read = 50;
+<a name="l00147"></a>00147     _prob = 80;
+<a name="l00148"></a>00148     <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a> = 5;
+<a name="l00149"></a>00149     _frame_size = 4096;
+<a name="l00150"></a>00150     _ram_size = 1048576;
+<a name="l00151"></a>00151     _only_read = 1;
+<a name="l00152"></a>00152     _Tmin = 1, _Tmax = 100;
+<a name="l00153"></a>00153     _max_memory = 0;
+<a name="l00154"></a>00154     _locality_prob = 30;
+<a name="l00155"></a>00155     _reference_string = prob_list = NULL;
+<a name="l00156"></a>00156     <a class="code" href="a00017.html#e4cc024f7d0cb7543216fc463ab91af3" title="Indica se la paginazione anticipata risulta attiva.">anticipatory_paging</a> = 1;
+<a name="l00157"></a>00157     <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a> = log2(_frame_size);
+<a name="l00158"></a>00158     <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a> = <a class="code" href="a00026.html#8beaa5b28cf9a48a1df357d25ec9704e" title="Lunghezza in bit di un indirizzo.">ADDRESS_LENGTH</a>-<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>;
+<a name="l00159"></a>00159     
+<a name="l00160"></a>00160     <span class="keywordflow">while</span> ((ch = getopt_long(argc, argv, <span class="stringliteral">"hadl:L:Mm:r:R:s:t:T:p:P:wv"</span>, 
+<a name="l00161"></a>00161            longopts, &amp;option_index)) != -1) {       
+<a name="l00162"></a>00162         <span class="keywordflow">switch</span> (ch) {
+<a name="l00163"></a>00163             <span class="keywordflow">case</span> <span class="charliteral">'a'</span>:
+<a name="l00164"></a>00164                 <a class="code" href="a00017.html#e4cc024f7d0cb7543216fc463ab91af3" title="Indica se la paginazione anticipata risulta attiva.">anticipatory_paging</a> = 0;
+<a name="l00165"></a>00165                 <span class="keywordflow">break</span>;
+<a name="l00166"></a>00166             <span class="keywordflow">case</span> <span class="charliteral">'d'</span>:
+<a name="l00167"></a>00167                 <a class="code" href="a00017.html#c3e1795766a80ec63b157951b4b9a7d4" title="Livello di debug.">debug</a>++;
+<a name="l00168"></a>00168                 <span class="keywordflow">break</span>;
+<a name="l00169"></a>00169             <span class="keywordflow">case</span> <span class="charliteral">'L'</span>:
+<a name="l00170"></a>00170                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00171"></a>00171                     _locality_prob = atoi(optarg);
+<a name="l00172"></a>00172                     <span class="keywordflow">if</span> ((_locality_prob &lt; 0) || (_locality_prob &gt;100)) {
+<a name="l00173"></a>00173                         fprintf(stderr, <span class="stringliteral">"La percentuale di localita' deve "</span>
+<a name="l00174"></a>00174                                 <span class="stringliteral">"essere compresa tra 0 e 100.\n"</span>);
+<a name="l00175"></a>00175                         error = 2;
+<a name="l00176"></a>00176                     }
+<a name="l00177"></a>00177                 } <span class="keywordflow">else</span>
+<a name="l00178"></a>00178                     error = 1;
+<a name="l00179"></a>00179                 <span class="keywordflow">break</span>;
+<a name="l00180"></a>00180             <span class="keywordflow">case</span> <span class="charliteral">'l'</span>:
+<a name="l00181"></a>00181                 <span class="keywordflow">if</span> (optarg)
+<a name="l00182"></a>00182                     prob_list = optarg;
+<a name="l00183"></a>00183                 <span class="keywordflow">else</span>
+<a name="l00184"></a>00184                     error = 1;
+<a name="l00185"></a>00185                 <span class="keywordflow">break</span>;              
+<a name="l00186"></a>00186             <span class="keywordflow">case</span> <span class="charliteral">'M'</span>:
+<a name="l00187"></a>00187                 _max_memory = 1;
+<a name="l00188"></a>00188                 <span class="keywordflow">break</span>;
+<a name="l00189"></a>00189             <span class="keywordflow">case</span> <span class="charliteral">'m'</span>:
+<a name="l00190"></a>00190                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00191"></a>00191                     _max_read = atoi(optarg);
+<a name="l00192"></a>00192                     <span class="keywordflow">if</span> (_max_read &lt;= 0) {
+<a name="l00193"></a>00193                         fprintf(stderr, <span class="stringliteral">"Il numero di accessi alla memoria "</span>
+<a name="l00194"></a>00194                                 <span class="stringliteral">"deve essere positivo.\n"</span>);
+<a name="l00195"></a>00195                         error = 2;
+<a name="l00196"></a>00196                     }
+<a name="l00197"></a>00197                 } <span class="keywordflow">else</span>
+<a name="l00198"></a>00198                     error = 1;
+<a name="l00199"></a>00199                 <span class="keywordflow">break</span>;
+<a name="l00200"></a>00200             <span class="keywordflow">case</span> <span class="charliteral">'p'</span>:
+<a name="l00201"></a>00201                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00202"></a>00202                     <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a> = atoi(optarg);
+<a name="l00203"></a>00203                     <span class="keywordflow">if</span> (<a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a> == 0) {
+<a name="l00204"></a>00204                         fprintf(stderr, <span class="stringliteral">"Il numero di processi deve essere "</span>
+<a name="l00205"></a>00205                                 <span class="stringliteral">"positivo.\n"</span>);
+<a name="l00206"></a>00206                         error = 2;
+<a name="l00207"></a>00207                     } 
+<a name="l00208"></a>00208                 } <span class="keywordflow">else</span>
+<a name="l00209"></a>00209                     error = 1;
+<a name="l00210"></a>00210                 <span class="keywordflow">break</span>;
+<a name="l00211"></a>00211             <span class="keywordflow">case</span> <span class="charliteral">'P'</span>:
+<a name="l00212"></a>00212                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00213"></a>00213                     _prob = atof(optarg)*100;
+<a name="l00214"></a>00214                     <span class="keywordflow">if</span> (_prob &lt;= 0 || _prob &gt; 100) {
+<a name="l00215"></a>00215                         fprintf(stderr, <span class="stringliteral">"La probabilita' deve essere compresa"</span>
+<a name="l00216"></a>00216                                 <span class="stringliteral">" tra 0.1 ed 1.\n"</span>);
+<a name="l00217"></a>00217                         error = 2;
+<a name="l00218"></a>00218                     }
+<a name="l00219"></a>00219                 } <span class="keywordflow">else</span>
+<a name="l00220"></a>00220                     error = 1;
+<a name="l00221"></a>00221                 <span class="keywordflow">break</span>;
+<a name="l00222"></a>00222             <span class="keywordflow">case</span> <span class="charliteral">'r'</span>:
+<a name="l00223"></a>00223                 <span class="keywordflow">if</span> (optarg)
+<a name="l00224"></a>00224                     _reference_string = optarg;
+<a name="l00225"></a>00225                 <span class="keywordflow">else</span>
+<a name="l00226"></a>00226                     error = 1;
+<a name="l00227"></a>00227                 <span class="keywordflow">break</span>;
+<a name="l00228"></a>00228             <span class="keywordflow">case</span> <span class="charliteral">'R'</span>:
+<a name="l00229"></a>00229                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00230"></a>00230                     _ram_size = atoi(optarg);
+<a name="l00231"></a>00231                     <span class="keywordflow">if</span> (_ram_size &gt; exp2(<a class="code" href="a00026.html#8beaa5b28cf9a48a1df357d25ec9704e" title="Lunghezza in bit di un indirizzo.">ADDRESS_LENGTH</a>)) {
+<a name="l00232"></a>00232                         fprintf(stderr, <span class="stringliteral">"La dimensione della RAM non puo' "</span>
+<a name="l00233"></a>00233                                 <span class="stringliteral">" essere superiore a %d byte.\n"</span>, 
+<a name="l00234"></a>00234                                 (<span class="keywordtype">int</span>) exp2(<a class="code" href="a00026.html#8beaa5b28cf9a48a1df357d25ec9704e" title="Lunghezza in bit di un indirizzo.">ADDRESS_LENGTH</a>));
+<a name="l00235"></a>00235                         error = 2;
+<a name="l00236"></a>00236                     }
+<a name="l00237"></a>00237                 } <span class="keywordflow">else</span>
+<a name="l00238"></a>00238                     error = 1;
+<a name="l00239"></a>00239                 <span class="keywordflow">break</span>;
+<a name="l00240"></a>00240             <span class="keywordflow">case</span> <span class="charliteral">'s'</span>:
+<a name="l00241"></a>00241                 <span class="keywordflow">if</span> (optarg) {
+<a name="l00242"></a>00242                     _frame_size = atoi(optarg);
+<a name="l00243"></a>00243                 } <span class="keywordflow">else</span>
+<a name="l00244"></a>00244                     error = 1;
+<a name="l00245"></a>00245                 <span class="keywordflow">break</span>;
+<a name="l00246"></a>00246             <span class="keywordflow">case</span> <span class="charliteral">'t'</span>:
+<a name="l00247"></a>00247                 <span class="keywordflow">if</span> (optarg)
+<a name="l00248"></a>00248                     _Tmin = atoi(optarg);
+<a name="l00249"></a>00249                 <span class="keywordflow">else</span>
+<a name="l00250"></a>00250                     error = 1;
+<a name="l00251"></a>00251                 <span class="keywordflow">break</span>;
+<a name="l00252"></a>00252             <span class="keywordflow">case</span> <span class="charliteral">'T'</span>:
+<a name="l00253"></a>00253                 <span class="keywordflow">if</span> (optarg) 
+<a name="l00254"></a>00254                     _Tmax = atoi(optarg);
+<a name="l00255"></a>00255                 <span class="keywordflow">else</span>
+<a name="l00256"></a>00256                     error = 1;
+<a name="l00257"></a>00257                 <span class="keywordflow">break</span>;
+<a name="l00258"></a>00258             <span class="keywordflow">case</span> <span class="charliteral">'w'</span>:
+<a name="l00259"></a>00259                 _only_read = 0;
+<a name="l00260"></a>00260                 <span class="keywordflow">break</span>;
+<a name="l00261"></a>00261             <span class="keywordflow">case</span> <span class="charliteral">'v'</span>:
+<a name="l00262"></a>00262                 fprintf(stderr, <span class="stringliteral">"vmbo versione %d.%d.%d\n"</span>,
+<a name="l00263"></a>00263                         <a class="code" href="a00026.html#e9b0873c1004a01651f733d556db118c">VER_MAJOR</a>, <a class="code" href="a00026.html#d78650efa42849c5f86d372f11f26403">VER_MINOR</a>, <a class="code" href="a00026.html#3d879ee4c2f68ab4622fc8fab22ef771">VER_REVISION</a>);
+<a name="l00264"></a>00264                 error = 2;
+<a name="l00265"></a>00265                 <span class="keywordflow">break</span>;
+<a name="l00266"></a>00266             <span class="keywordflow">case</span> <span class="charliteral">'h'</span>:
+<a name="l00267"></a>00267                 error = 1;
+<a name="l00268"></a>00268                 <span class="keywordflow">break</span>;
+<a name="l00269"></a>00269             <span class="keywordflow">case</span> 0:
+<a name="l00270"></a>00270                 <span class="keywordflow">break</span>;
+<a name="l00271"></a>00271         }
+<a name="l00272"></a>00272     }
+<a name="l00273"></a>00273     
+<a name="l00274"></a>00274     <span class="keywordflow">if</span> (error) {
+<a name="l00275"></a>00275         <span class="keywordflow">if</span> (error == 1)
+<a name="l00276"></a>00276             <a class="code" href="a00025.html#2ef30c42cbc289d899a8be5d2d8f77d0" title="Stampa la sinossi del programma.">usage</a>();
+<a name="l00277"></a>00277         <span class="keywordflow">return</span> EXIT_FAILURE;
+<a name="l00278"></a>00278     } 
+<a name="l00279"></a>00279     
+<a name="l00280"></a>00280     <span class="comment">/* </span>
+<a name="l00281"></a>00281 <span class="comment">     *  Inizializzazione dimensione indirizzo di memoria e maschera per </span>
+<a name="l00282"></a>00282 <span class="comment">     *  ottenere l'offset da un indirizzo virtuale generaato da un processo.</span>
+<a name="l00283"></a>00283 <span class="comment">     */</span>
+<a name="l00284"></a>00284     <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a> = log2(_frame_size);
+<a name="l00285"></a>00285     <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a> = <a class="code" href="a00026.html#8beaa5b28cf9a48a1df357d25ec9704e" title="Lunghezza in bit di un indirizzo.">ADDRESS_LENGTH</a>-<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>;
+<a name="l00286"></a>00286     <span class="keywordflow">for</span> (<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">offset_mask</a>=0, i=0; i&lt;<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>; i++)
+<a name="l00287"></a>00287         <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">offset_mask</a> += (<a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a>) exp2(i);
+<a name="l00288"></a>00288     fprintf(stdout, <span class="stringliteral">"--&gt; Simulatore inizializzato con indirizzi a %d bit\n"</span>, 
+<a name="l00289"></a>00289             <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>+<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a>);
+<a name="l00290"></a>00290     
+<a name="l00291"></a>00291     <span class="comment">/*</span>
+<a name="l00292"></a>00292 <span class="comment">     *  Inizializzazione generatore numeri pseudo-casuali.</span>
+<a name="l00293"></a>00293 <span class="comment">     */</span>
+<a name="l00294"></a>00294     time_seed = (int) time(0);
+<a name="l00295"></a>00295     srandom(time_seed);
+<a name="l00296"></a>00296     
+<a name="l00297"></a>00297     <span class="comment">/*</span>
+<a name="l00298"></a>00298 <span class="comment">     *  Inizializzazione strutture dati e lancio dei thread: dapprima verra' </span>
+<a name="l00299"></a>00299 <span class="comment">     *  instanziato il thread che emula la MMU, successivamente il thread per</span>
+<a name="l00300"></a>00300 <span class="comment">     *  simulare il dispositivo di I/O ed in ultimo i thread "processo.</span>
+<a name="l00301"></a>00301 <span class="comment">     */</span>
+<a name="l00302"></a>00302     tid_mmu = <a class="code" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e" title="Inizializzazione MMU.">mmu_init</a>(_max_read, _ram_size, _frame_size);
+<a name="l00303"></a>00303     
+<a name="l00304"></a>00304     <span class="comment">/* </span>
+<a name="l00305"></a>00305 <span class="comment">     *  Gestione della reference string: se viene specificata da riga di</span>
+<a name="l00306"></a>00306 <span class="comment">     *  comando ne effettuo il parse ed imposto dei nuovi valori di default.</span>
+<a name="l00307"></a>00307 <span class="comment">     */</span>
+<a name="l00308"></a>00308     <a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a> = (<a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a>) -1;
+<a name="l00309"></a>00309     <span class="keywordflow">if</span> (_reference_string) {
+<a name="l00310"></a>00310         <span class="keywordtype">char</span> *ap, *prs;
+<a name="l00311"></a>00311         <span class="keywordtype">int</span> j;
+<a name="l00312"></a>00312         
+<a name="l00313"></a>00313         <span class="keywordflow">for</span> (<a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a>=j=0; j&lt;strlen(_reference_string); j++)
+<a name="l00314"></a>00314             <span class="keywordflow">if</span> (_reference_string[j] == <span class="charliteral">':'</span>)
+<a name="l00315"></a>00315                 <a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a>++;
+<a name="l00316"></a>00316         <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a> = ++<a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a>;
+<a name="l00317"></a>00317         <a class="code" href="a00017.html#e4cc024f7d0cb7543216fc463ab91af3" title="Indica se la paginazione anticipata risulta attiva.">anticipatory_paging</a> = 0;   <span class="comment">/* Disabilita la paginazione anticipata */</span>
+<a name="l00318"></a>00318         _prob = 100;               <span class="comment">/* Consenti solo accessi alla memoria   */</span>
+<a name="l00319"></a>00319         <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a> = 1;              <span class="comment">/* Crea un solo processo                */</span>
+<a name="l00320"></a>00320         _only_read = 1;            <span class="comment">/* Consenti solo accessi in lettura     */</span>
+<a name="l00321"></a>00321         _max_memory = 1;           <span class="comment">/* Alloca il massimo della memoria      */</span>
+<a name="l00322"></a>00322         <a class="code" href="a00019.html#7f1b05703d4a8a19186f95ba1641cb70" title="Reference string.">reference_string</a> = <a class="code" href="a00024.html#5bd6c80bbb0fa36b35dddb1c9606e99c" title="Macro per migliorare la leggibilita&amp;#39; dell&amp;#39;operazione di allocazione di blocchi...">XMALLOC</a>(<a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a>, <a class="code" href="a00019.html#e9e4facf094759ed44248817d7839baf" title="Numero di elementi nella reference string.">reference_count</a>);
+<a name="l00323"></a>00323         <span class="keywordflow">for</span> (i=0, prs = _reference_string; (ap = strsep(&amp;prs, <span class="stringliteral">":"</span>)) != NULL; ) {
+<a name="l00324"></a>00324             <span class="keywordflow">if</span> (*ap != <span class="charliteral">'\0'</span>)
+<a name="l00325"></a>00325                 <a class="code" href="a00019.html#7f1b05703d4a8a19186f95ba1641cb70" title="Reference string.">reference_string</a>[i++] = atoi(ap);
+<a name="l00326"></a>00326         }
+<a name="l00327"></a>00327     }
+<a name="l00328"></a>00328 
+<a name="l00329"></a>00329     tid_iodev = <a class="code" href="a00027.html#g0de75477baa4d452a538a517c6589ca0" title="Inizializzazione I/O.">io_device_init</a>(_Tmin, _Tmax);
+<a name="l00330"></a>00330     <a class="code" href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe" title="Funzione per la creazione dei thread di tipo &amp;quot;PROCESSO&amp;quot;.">proc_init</a>(<a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a>, _prob, _only_read, _max_memory, prob_list, _locality_prob);
+<a name="l00331"></a>00331     
+<a name="l00332"></a>00332     <span class="comment">/*</span>
+<a name="l00333"></a>00333 <span class="comment">     *  Attesa che tutti i thread abbiano terminato la propria esecuzione e</span>
+<a name="l00334"></a>00334 <span class="comment">     *  successiva deallocazione della memoria utilizzata: nell'ordine attendo</span>
+<a name="l00335"></a>00335 <span class="comment">     *  l'MMU, il dispositivo di I/O e tutti i processi.</span>
+<a name="l00336"></a>00336 <span class="comment">     */</span>
+<a name="l00337"></a>00337     pthread_join(*tid_mmu, NULL);
+<a name="l00338"></a>00338     <a class="code" href="a00027.html#gbc58cac7b3c0bd4162719dd9f846a6ae" title="Determina l&amp;#39;uscita del thread di I/O.">tell_io_device_to_exit</a>();
+<a name="l00339"></a>00339     pthread_join(*tid_iodev, NULL);
+<a name="l00340"></a>00340     <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a>; i++) {
+<a name="l00341"></a>00341         pthread_cond_signal(&amp;proc_table[i]-&gt;io_cond);
+<a name="l00342"></a>00342         pthread_join(proc_table[i]-&gt;tid, NULL);
+<a name="l00343"></a>00343         fclose(<a class="code" href="a00020.html#919acc831c71cb87d455b05e90c12ef5" title="File di log del processo.">LOG_FILE</a>(i));
+<a name="l00344"></a>00344     }
+<a name="l00345"></a>00345     
+<a name="l00346"></a>00346     <span class="comment">/*</span>
+<a name="l00347"></a>00347 <span class="comment">     *  Stampa delle statistiche.</span>
+<a name="l00348"></a>00348 <span class="comment">     */</span>
+<a name="l00349"></a>00349     fprintf(stdout, <span class="stringliteral">"\n+==================================================================+\n"</span>
+<a name="l00350"></a>00350            <span class="stringliteral">"|                       S T A T I S T I C H E                      |\n"</span>
+<a name="l00351"></a>00351            <span class="stringliteral">"+==================================================================+\n"</span>
+<a name="l00352"></a>00352            <span class="stringliteral">"| PID | NUM  | PROB | ACCESSI |  PAGE   | FAULT | ACCESSI |  TEMPO |\n"</span>
+<a name="l00353"></a>00353            <span class="stringliteral">"|     | PAG  |      | MEMORIA |  FAULT  |  (%%)  |   I/O   |  MEDIO |\n"</span>
+<a name="l00354"></a>00354            <span class="stringliteral">"+-----+------+------+---------+---------+-------+---------+--------+\n"</span>);
+<a name="l00355"></a>00355     <span class="keywordflow">for</span> (total_faults = allocated_pages = io_time_elapsed = i = 0; i &lt; max_proc; i++) {
+<a name="l00356"></a>00356         fprintf(stdout, <span class="stringliteral">"|% 4d |% 5d |% 4.0f%% | % 7d | % 7d | % 4.0f%% | % 7d | % 6.0f |\n"</span>,
+<a name="l00357"></a>00357                 proc_table[i]-&gt;pid, proc_table[i]-&gt;page_count,
+<a name="l00358"></a>00358                 proc_table[i]-&gt;percentile,
+<a name="l00359"></a>00359                 proc_table[i]-&gt;stats.mem_accesses,
+<a name="l00360"></a>00360                 proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#1bce99c82d1ae9585d492e4c27576d8c">page_faults</a>,
+<a name="l00361"></a>00361                 proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#1bce99c82d1ae9585d492e4c27576d8c">page_faults</a>?
+<a name="l00362"></a>00362                       ((<span class="keywordtype">float</span>)proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#1bce99c82d1ae9585d492e4c27576d8c">page_faults</a>/
+<a name="l00363"></a>00363                        (<span class="keywordtype">float</span>)proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#88477e9a7dd03e60dc69318c392ff847">mem_accesses</a>)*100:0,
+<a name="l00364"></a>00364                 proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#d41e2598a1aa902df946f6d5d5e0302e">io_requests</a>,
+<a name="l00365"></a>00365                 proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#d41e2598a1aa902df946f6d5d5e0302e">io_requests</a>?
+<a name="l00366"></a>00366                 ((<span class="keywordtype">float</span>)proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#f8496d8f1941cabbf0cbb2ab977b7c57">time_elapsed</a>/
+<a name="l00367"></a>00367                  (<span class="keywordtype">float</span>)proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#d41e2598a1aa902df946f6d5d5e0302e">io_requests</a>):0);
+<a name="l00368"></a>00368                 io_time_elapsed += proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#f8496d8f1941cabbf0cbb2ab977b7c57">time_elapsed</a>;
+<a name="l00369"></a>00369         allocated_pages += proc_table[i]-&gt;<a class="code" href="a00012.html#d300f63eba5764dcb0ec72bb90bb0199">page_count</a>;
+<a name="l00370"></a>00370         total_faults += proc_table[i]-&gt;<a class="code" href="a00012.html#b30a97b34de52ba50f4a68dd215fe39a">stats</a>.<a class="code" href="a00013.html#1bce99c82d1ae9585d492e4c27576d8c">page_faults</a>;
+<a name="l00371"></a>00371     }
+<a name="l00372"></a>00372     fprintf(stdout, <span class="stringliteral">"+-----+------+------+---------+---------"</span>
+<a name="l00373"></a>00373            <span class="stringliteral">"+-------+---------+--------+\n"</span>
+<a name="l00374"></a>00374            <span class="stringliteral">"                    | % 7d | % 7d | % 4.0f%% | % 7d | % 6.0f |\n"</span>
+<a name="l00375"></a>00375            <span class="stringliteral">"                    +---------+---------+-------"</span>
+<a name="l00376"></a>00376            <span class="stringliteral">"+---------+--------+\n\n"</span>, <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a>, total_faults, 
+<a name="l00377"></a>00377            ((<span class="keywordtype">float</span>)<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#e050b82b994239e7902e82bb0ce27626">page_faults</a>/(<span class="keywordtype">float</span>)<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a>)*100,
+<a name="l00378"></a>00378            <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a>, <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a>?
+<a name="l00379"></a>00379             ((<span class="keywordtype">float</span>)io_time_elapsed/<a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a>):0);
+<a name="l00380"></a>00380     
+<a name="l00381"></a>00381     fprintf(stdout, <span class="stringliteral">"Pagine virtuali allocate  = % 12d\n"</span>
+<a name="l00382"></a>00382             <span class="stringliteral">"Memoria virtuale allocata = %12lu (~ %.1f Mb)\n\n"</span>,
+<a name="l00383"></a>00383             allocated_pages, (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>) allocated_pages*<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">page_size</a>,
+<a name="l00384"></a>00384             (<span class="keywordtype">float</span>) allocated_pages*<a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>.<a class="code" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">page_size</a>/1048576);
+<a name="l00385"></a>00385     
+<a name="l00386"></a>00386     <span class="comment">/*</span>
+<a name="l00387"></a>00387 <span class="comment">     *  Dealloco la struttura dati che rappresenta la proc table ed i relativi</span>
+<a name="l00388"></a>00388 <span class="comment">     *  thread ID.</span>
+<a name="l00389"></a>00389 <span class="comment">     */</span>
+<a name="l00390"></a>00390     <span class="keywordflow">for</span> (i = 0; i &lt; max_proc; i++) {
+<a name="l00391"></a>00391         <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(proc_table[i]-&gt;page_table);
+<a name="l00392"></a>00392         <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(proc_table[i]);
+<a name="l00393"></a>00393     }
+<a name="l00394"></a>00394     <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(proc_table);
+<a name="l00395"></a>00395     <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(tid_iodev);
+<a name="l00396"></a>00396     <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(tid_mmu);
+<a name="l00397"></a>00397     <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(<a class="code" href="a00019.html#7f1b05703d4a8a19186f95ba1641cb70" title="Reference string.">reference_string</a>);
+<a name="l00398"></a>00398         
+<a name="l00399"></a>00399     <span class="keywordflow">return</span> EXIT_SUCCESS;
+<a name="l00400"></a>00400 }
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402 
+<a name="l00411"></a>00411 <span class="keywordtype">void</span> *
+<a name="l00412"></a><a class="code" href="a00025.html#700afb0ef0f08ce1e7fb5a565ffde182">00412</a> <a class="code" href="a00024.html#307a2ba6d2366704dc1d57b8d20b37ef" title="Wrapper della funzione &amp;quot;malloc&amp;quot;.">xmalloc</a>(<span class="keywordtype">size_t</span> num)
+<a name="l00413"></a>00413 {
+<a name="l00414"></a>00414     <span class="keywordtype">void</span> *p = (<span class="keywordtype">void</span> *) malloc(num);
+<a name="l00415"></a>00415     <span class="keywordflow">if</span> (!p) {
+<a name="l00416"></a>00416         printf(<span class="stringliteral">"Memory exhausted"</span>);
+<a name="l00417"></a>00417         exit(EXIT_FAILURE);
+<a name="l00418"></a>00418     }
+<a name="l00419"></a>00419     <span class="keywordflow">return</span> p;
+<a name="l00420"></a>00420 }
+</pre></div></div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

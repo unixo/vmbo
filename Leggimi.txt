@@ -1,0 +1,102 @@
+CONTENUTO DELL'ARCHIVIO
+=======================
+ - Leggimi.pdf: nota introduttiva
+ - Leggimi.txt: questo file
+ - Makefile: istruzioni per la compilazione
+ - doc: documentazione di progetto
+ - doc_api: documentazione delle API applicative
+ - src: sorgenti
+
+COMPILAZIONE
+============
+Eseguire su riga di comando il comando "make" ed attendere che la
+compilazione termini. 
+
+unixo$ make
+cd src && make && cp vmbo ..
+gcc   -c random.c 2>/dev/null
+gcc   -c io_device.c 2>/dev/null
+gcc   -c proc.c 2>/dev/null
+gcc   -c vmbo.c 2>/dev/null
+gcc   -lm random.o io_device.o mmu.c proc.o vmbo.o -o vmbo -pthread
+
+In ambienti Linux, e' possibile che venga visualizzato qualche
+messaggio di warning relativo alla funzione "exp2": e' possibile
+ignorare questi messaggi, unicamente dovuti alla portabilita'
+del codice.
+
+UTILIZZO
+========
+Per utilizzare il simulatore sara' sufficiente eseguire il comando
+"vmbo" da riga comando, come mostrato nell'esempio.
+
+unixo$ ./vmbo
+--> Simulatore inizializzato con indirizzi a 20 bit
+--> Thread MMU avviato
+    [RAM=1048576, PAGESIZE=4096, PHYS-FRAMES=256, TOTAL_READ=50, PROC=5]
+--> Thread DEVICE I/O avviato [Tmin=1, Tmax=100]
+--> Thread PROC avviati [NUM=5, PROB=80%, OPER=R, LOCALITY=30%]
+<-- Thread MMU terminato
+<-- Thread DEVICE I/O terminato
+
++==================================================================+
+|                       S T A T I S T I C H E                      |
++==================================================================+
+| PID | NUM  | PROB | ACCESSI |  PAGE   | FAULT | ACCESSI |  TEMPO |
+|     | PAG  |      | MEMORIA |  FAULT  |  (%)  |   I/O   |  MEDIO |
++-----+------+------+---------+---------+-------+---------+--------+
+|   0 |   85 |  80% |      17 |       3 |   18% |       0 |      0 |
+|   1 |  118 |  80% |       4 |       3 |   75% |       0 |      0 |
+|   2 |  134 |  80% |      18 |       4 |   22% |       1 |     58 |
+|   3 |   41 |  80% |       9 |       3 |   33% |       1 |     42 |
+|   4 |  165 |  80% |       2 |       1 |   50% |       1 |      1 |
++-----+------+------+---------+---------+-------+---------+--------+
+                    |      50 |      14 |   28% |       3 |     34 |
+                    +---------+---------+-------+---------+--------+
+
+Pagine virtuali allocate  =          543
+Memoria virtuale allocata =      2224128 (~ 2.1 Mb)
+
+
+Si potranno inoltre specificare diversi parametri da riga di comando
+utili a modificare i parametri del simulatore; per un elenco dei
+parametri, eseguire il seguente comando:
+
+unixo$ ./vmbo --help
+Utilizzo: vmbo [OPZIONI]...
+
+Opzioni generali:
+  -h, --help                Stampa questo help
+  -v, --version             Stampa la versione del programma ed esce
+  -d, --debug               Attiva il debug
+
+Opzioni MMU:
+  -a, --anticipatory        Disabilita l'anticipatory paging
+  -m, --memory-read=NUM     Numero massimo di accessi alla memoria
+  -R, --ram-size=NUM        Quantita di RAM disponibile
+  -s, --frame-size=NUM      Dimensione della pagina/frame
+  -w, --write-enabled       Abilita gli accessi in scrittura alla memoria
+
+Opzioni PROCESSO:
+  -M, --all-memory          Forza i processi ad allocare il massimo della memoria
+  -p, --processes=NUM       Numero di processi contemporanei
+  -P, --probability=NUM     Probabilita di accessi alla memoria
+  -l, --probabilities=LIST  Specifica la probabilta per ogni processo
+  -L, --locality=NUM        Specifica la percentuale di localita temporale
+  -r, --reference=LIST      Specifica la reference string da usare
+
+Opzioni DISPOSITIVO I/O:
+  -t, --Tmin=NUM            Tempo minimo d'attesa del dispositivo I/O
+  -t, --Tmax=NUM            Tempo massimo d'attesa del dispositivo I/O
+
+Esempi d'utilizzo:
+ - Esegue 7 processi contemporanei ed effettua 10 letture
+   vmbo --max-read=10 --max-processes=7
+ - Esegue 3 processi, specificando il ritardo per il dispositivo I/O
+   vmbo --max-processes=3 --Tmin=2 --Tmax=30
+ - Specifica la probabilita' di effettuare un accesso alla memoria
+   vmbo --probability=30
+ - Specifica una probabilita' diversa per ogni processo
+   vmbo --probabilities=30:20:78:93:80
+ - Specifica una reference string per determinare gli accessi
+   vmbo --reference=1:2:3:4:1:2:5:1:2:3:4:5

@@ -1,0 +1,589 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/mmu.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/mmu.h</h1><code>#include &lt;pthread.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="a00040.html">vm_types.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="a00037.html">queue.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="a00036.html">proc.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="a00032.html">io_device.h</a>&quot;</code><br>
+
+<p>
+<div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dynsection">
+<p><center><img src="a00044.png" border="0" usemap="#vmbo/src/mmu.hdep_map" alt=""></center>
+<map name="vmbo/src/mmu.hdep_map">
+<area shape="rect" id="node3" href="a00017.html" title="vmbo/src/mmu.c" alt="" coords="5,83,136,112"><area shape="rect" id="node5" href="a00019.html" title="vmbo/src/proc.c" alt="" coords="160,83,288,112"><area shape="rect" id="node7" href="a00025.html" title="vmbo/src/vmbo.c" alt="" coords="312,83,448,112"></map>
+</div>
+
+<p>
+<a href="a00034.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Strutture dati</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html">mmu_data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parametri di configurazione del modulo MMU.  <a href="a00008.html#_details">Continua...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00003.html">frame</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struttura per la rappresentazione di un <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> di memoria.  <a href="a00003.html#_details">Continua...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00001.html">active_page</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struttura per rappresentare una pagina associata ad un <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>.  <a href="a00001.html#_details">Continua...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#ad7eab9aa3f866ff597b8afef4ee4e7f">IS_PAGE_PRESENT</a>(p)&nbsp;&nbsp;&nbsp;((p).present)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce 1 se la pagina e' presente in memoria.  <a href="#ad7eab9aa3f866ff597b8afef4ee4e7f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#7a22e161e9dc14ba9e29a1a141995fd2">IS_PAGE_REFERENCED</a>(p)&nbsp;&nbsp;&nbsp;((p).reference)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce 1 se la pagina e' stata referenziata.  <a href="#7a22e161e9dc14ba9e29a1a141995fd2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#6011943db531bd72ddd4dc11ba079ff8">IS_PAGE_DIRTY</a>(p)&nbsp;&nbsp;&nbsp;((p).dirty)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce 1 se la pagina e' "sporca".  <a href="#6011943db531bd72ddd4dc11ba079ff8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#0439c9d8b12a7ca812625cbe25cf6452">PAGE_CLEAR_DIRTY</a>(p)&nbsp;&nbsp;&nbsp;((p).dirty = 0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta a zero il bit dirty della pagina.  <a href="#0439c9d8b12a7ca812625cbe25cf6452"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#25b47a83e026f74189671b7264235bf4">PAGE_CLEAR_REFERENCED</a>(p)&nbsp;&nbsp;&nbsp;((p).reference = 0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta a zero il bit reference della pagina.  <a href="#25b47a83e026f74189671b7264235bf4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#66ac1d700e6118f81a99a61098b9f2fa">PAGE_CLEAR_PRESENT</a>(p)&nbsp;&nbsp;&nbsp;((p).present = 0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta a zero il bit present della pagina.  <a href="#66ac1d700e6118f81a99a61098b9f2fa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#cd587464f41f54435687db81d3458993">PAGE_CLEAR_FRAMEID</a>(p)&nbsp;&nbsp;&nbsp;((p).frame_id = (<a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>) -1)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta a zero il frame-id della pagina.  <a href="#cd587464f41f54435687db81d3458993"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#6727db79c42008427edbef4a4899c137">PAGE_SET_DIRTY</a>(p)&nbsp;&nbsp;&nbsp;((p).dirty = 1)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta a uno il bit dirty della pagina.  <a href="#6727db79c42008427edbef4a4899c137"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#c3fa31a10f3114cc8ca1eb8138fb0ff9">PAGE_SET_REFERENCED</a>(p)&nbsp;&nbsp;&nbsp;((p).reference = 1)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta ad uno il bit reference della pagina.  <a href="#c3fa31a10f3114cc8ca1eb8138fb0ff9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#a4fd9819f686e5a32f5223c7ac941bcb">PAGE_SET_PRESENT</a>(p)&nbsp;&nbsp;&nbsp;((p).present = 1)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta ad uno il bit present della pagina.  <a href="#a4fd9819f686e5a32f5223c7ac941bcb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#d9810027c0f0a887d21e2c68a8789a70">PAGE_SET_NUM</a>(p, num)&nbsp;&nbsp;&nbsp;((p).id = num)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta l'identificatore della pagina.  <a href="#d9810027c0f0a887d21e2c68a8789a70"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#29b3192fe6429305beb4fb4a2366b213">PAGE_SET_FRAMEID</a>(p, fid)&nbsp;&nbsp;&nbsp;((p).frame_id = fid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imposta il frame-id per la pagina "p".  <a href="#29b3192fe6429305beb4fb4a2366b213"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#e8f5cee6532532442ffa21392c18107a">PAGE_NUM</a>(p)&nbsp;&nbsp;&nbsp;((p).id)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce l'identificatore della pagina.  <a href="#e8f5cee6532532442ffa21392c18107a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#c08bbc74a539602f7b54686146d2aa4b">FRAME_ID</a>(p)&nbsp;&nbsp;&nbsp;((p).frame_id)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce il frame-id della pgina.  <a href="#c08bbc74a539602f7b54686146d2aa4b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#6450fa975b25a17fa02ee10dc22c0c0c">ASSIGN_FRAME_TO_PROC</a>(f, p, n)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assegna il <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> "f" alla pagina "n" del processo "p".  <a href="#6450fa975b25a17fa02ee10dc22c0c0c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#ad24872b31f6b55a0eca0506ab5765f9">NUM_OF_REQUESTS</a>()&nbsp;&nbsp;&nbsp;(mmu.page_hits+mmu.page_faults)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Restituisce il numero di richieste effettuate all'MMU.  <a href="#ad24872b31f6b55a0eca0506ab5765f9"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef struct <a class="el" href="a00001.html">active_page</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#e7205f653d0ac8fd96f71fc42fa963d5">active_page_t</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo di dato active_page_t da struct <a class="el" href="a00001.html" title="Struttura per rappresentare una pagina associata ad un frame.">active_page</a>.  <a href="#e7205f653d0ac8fd96f71fc42fa963d5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef struct <a class="el" href="a00003.html">frame</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#94cbf4e1b49f5c1501775c2a1dbb078f">frame_t</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo di dato frame_t da struct <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>.  <a href="#94cbf4e1b49f5c1501775c2a1dbb078f"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">pthread_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e">mmu_init</a> (int, int, int)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inizializzazione MMU.  <a href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed">memory_access</a> (int, <a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>, int)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funzione per la lettura/scrittura di una zona di memoria.  <a href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Variabili</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct <a class="el" href="a00008.html">mmu_data</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+<dl class="author" compact><dt><b>Autore:</b></dt><dd>Ferruccio Vitale (<a href="mailto:unixo@devzero.it">unixo@devzero.it</a>) </dd></dl>
+<dl class="date" compact><dt><b>Data:</b></dt><dd>21/04/2009</dd></dl>
+<dl class="note" compact><dt><b>Nota:</b></dt><dd>Universita' degli studi di Urbino "Carlo Bo"<br>
+ Sistemi Operativi<br>
+ Professore Emanuele Lattanzi<br>
+ Anno Accademico 2008 - 2009 </dd></dl>
+
+<p>Definizione nel file <a class="el" href="a00034.html">mmu.h</a>.</p>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="6450fa975b25a17fa02ee10dc22c0c0c"></a><!-- doxytag: member="mmu.h::ASSIGN_FRAME_TO_PROC" ref="6450fa975b25a17fa02ee10dc22c0c0c" args="(f, p, n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ASSIGN_FRAME_TO_PROC          </td>
+          <td>(</td>
+          <td class="paramtype">f,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">p,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">n&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> {\
+f-&gt;debug_info.pid = p-&gt;pid; \
+f-&gt;debug_info.page_id = n; \
+} <span class="keywordflow">while</span> (0)
+</pre></div>Assegna il <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> "f" alla pagina "n" del processo "p". 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00070">70</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c08bbc74a539602f7b54686146d2aa4b"></a><!-- doxytag: member="mmu.h::FRAME_ID" ref="c08bbc74a539602f7b54686146d2aa4b" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FRAME_ID          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).frame_id)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce il frame-id della pgina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00069">69</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6011943db531bd72ddd4dc11ba079ff8"></a><!-- doxytag: member="mmu.h::IS_PAGE_DIRTY" ref="6011943db531bd72ddd4dc11ba079ff8" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IS_PAGE_DIRTY          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).dirty)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce 1 se la pagina e' "sporca". 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00058">58</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ad7eab9aa3f866ff597b8afef4ee4e7f"></a><!-- doxytag: member="mmu.h::IS_PAGE_PRESENT" ref="ad7eab9aa3f866ff597b8afef4ee4e7f" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IS_PAGE_PRESENT          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).present)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce 1 se la pagina e' presente in memoria. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00056">56</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7a22e161e9dc14ba9e29a1a141995fd2"></a><!-- doxytag: member="mmu.h::IS_PAGE_REFERENCED" ref="7a22e161e9dc14ba9e29a1a141995fd2" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IS_PAGE_REFERENCED          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).reference)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce 1 se la pagina e' stata referenziata. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00057">57</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ad24872b31f6b55a0eca0506ab5765f9"></a><!-- doxytag: member="mmu.h::NUM_OF_REQUESTS" ref="ad24872b31f6b55a0eca0506ab5765f9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_OF_REQUESTS          </td>
+          <td>(</td>
+&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(mmu.page_hits+mmu.page_faults)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce il numero di richieste effettuate all'MMU. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00074">74</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0439c9d8b12a7ca812625cbe25cf6452"></a><!-- doxytag: member="mmu.h::PAGE_CLEAR_DIRTY" ref="0439c9d8b12a7ca812625cbe25cf6452" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_CLEAR_DIRTY          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).dirty = 0)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta a zero il bit dirty della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00059">59</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd587464f41f54435687db81d3458993"></a><!-- doxytag: member="mmu.h::PAGE_CLEAR_FRAMEID" ref="cd587464f41f54435687db81d3458993" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_CLEAR_FRAMEID          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).frame_id = (<a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>) -1)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta a zero il frame-id della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00062">62</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="66ac1d700e6118f81a99a61098b9f2fa"></a><!-- doxytag: member="mmu.h::PAGE_CLEAR_PRESENT" ref="66ac1d700e6118f81a99a61098b9f2fa" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_CLEAR_PRESENT          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).present = 0)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta a zero il bit present della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00061">61</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="25b47a83e026f74189671b7264235bf4"></a><!-- doxytag: member="mmu.h::PAGE_CLEAR_REFERENCED" ref="25b47a83e026f74189671b7264235bf4" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_CLEAR_REFERENCED          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).reference = 0)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta a zero il bit reference della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00060">60</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e8f5cee6532532442ffa21392c18107a"></a><!-- doxytag: member="mmu.h::PAGE_NUM" ref="e8f5cee6532532442ffa21392c18107a" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_NUM          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).id)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Restituisce l'identificatore della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00068">68</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6727db79c42008427edbef4a4899c137"></a><!-- doxytag: member="mmu.h::PAGE_SET_DIRTY" ref="6727db79c42008427edbef4a4899c137" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_SET_DIRTY          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).dirty = 1)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta a uno il bit dirty della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00063">63</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="29b3192fe6429305beb4fb4a2366b213"></a><!-- doxytag: member="mmu.h::PAGE_SET_FRAMEID" ref="29b3192fe6429305beb4fb4a2366b213" args="(p, fid)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_SET_FRAMEID          </td>
+          <td>(</td>
+          <td class="paramtype">p,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">fid&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).frame_id = fid)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta il frame-id per la pagina "p". 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00067">67</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d9810027c0f0a887d21e2c68a8789a70"></a><!-- doxytag: member="mmu.h::PAGE_SET_NUM" ref="d9810027c0f0a887d21e2c68a8789a70" args="(p, num)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_SET_NUM          </td>
+          <td>(</td>
+          <td class="paramtype">p,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">num&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).id = num)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta l'identificatore della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00066">66</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a4fd9819f686e5a32f5223c7ac941bcb"></a><!-- doxytag: member="mmu.h::PAGE_SET_PRESENT" ref="a4fd9819f686e5a32f5223c7ac941bcb" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_SET_PRESENT          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).present = 1)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta ad uno il bit present della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00065">65</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3fa31a10f3114cc8ca1eb8138fb0ff9"></a><!-- doxytag: member="mmu.h::PAGE_SET_REFERENCED" ref="c3fa31a10f3114cc8ca1eb8138fb0ff9" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PAGE_SET_REFERENCED          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((p).reference = 1)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Imposta ad uno il bit reference della pagina. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00064">64</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a class="anchor" name="e7205f653d0ac8fd96f71fc42fa963d5"></a><!-- doxytag: member="mmu.h::active_page_t" ref="e7205f653d0ac8fd96f71fc42fa963d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00001.html">active_page</a> <a class="el" href="a00001.html">active_page_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo di dato active_page_t da struct <a class="el" href="a00001.html" title="Struttura per rappresentare una pagina associata ad un frame.">active_page</a>. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00148">148</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="94cbf4e1b49f5c1501775c2a1dbb078f"></a><!-- doxytag: member="mmu.h::frame_t" ref="94cbf4e1b49f5c1501775c2a1dbb078f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00003.html">frame</a> <a class="el" href="a00003.html">frame_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo di dato frame_t da struct <a class="el" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00034.html#l00153">153</a> del file <a class="el" href="a00034.html">mmu.h</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle variabili</h2>
+<a class="anchor" name="da2557f9d82bb48f501d53cb4c2d9a0e"></a><!-- doxytag: member="mmu.h::mmu" ref="da2557f9d82bb48f501d53cb4c2d9a0e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="a00008.html">mmu_data</a>  <a class="el" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

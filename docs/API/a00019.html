@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/proc.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/proc.c</h1><code>#include &quot;<a class="el" href="a00036.html">proc.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="a00034.html">mmu.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="a00032.html">io_device.h</a>&quot;</code><br>
+<code>#include &lt;string.h&gt;</code><br>
+<code>#include &lt;math.h&gt;</code><br>
+
+<p>
+<a href="a00035.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#0d8bf0cccae0520adeba35a4edbd4143">LOOP_ITERATIONS</a>&nbsp;&nbsp;&nbsp;8</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numero di cicli.  <a href="#0d8bf0cccae0520adeba35a4edbd4143"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#3176b30966e80543129b79888145e5bf">SIZE_OF_ITEM</a>&nbsp;&nbsp;&nbsp;10</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dimensione dell'elemento del vettore.  <a href="#3176b30966e80543129b79888145e5bf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#bdab1684e4bcbb1e63b7eb0a9fff9dd9">DSS</a>(p)&nbsp;&nbsp;&nbsp;(((<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[p]))-&gt;page_count*mmu.page_size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dimensione spazio indirizzamento virtuale.  <a href="#bdab1684e4bcbb1e63b7eb0a9fff9dd9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#40976f7da1fc4de6c81c73330665d49d">MEM_ACCESS_PROBABILITY</a>(n)&nbsp;&nbsp;&nbsp;(<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[n]-&gt;percentile)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Probabilita di effettuare un accesso in memoria.  <a href="#40976f7da1fc4de6c81c73330665d49d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#cc17168084ff3e01d809d16f7a271638">WAIT_FOR_IO_TO_COMPLETE</a>(n)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attesa per il completamente I/O.  <a href="#cc17168084ff3e01d809d16f7a271638"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#g3b8e883ce8a50b93217037bc3429253e">simulate_loop</a> (int procnum)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Simulazione d'accesso ad un vettore di elementi.  <a href="a00029.html#g3b8e883ce8a50b93217037bc3429253e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#g0e5bbe010bad6f4740f6334c0454bba2">random_access</a> (int procnum)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Effettua un accesso alla memoria con indirizzo casuale.  <a href="a00029.html#g0e5bbe010bad6f4740f6334c0454bba2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#gaf5abb1899913f9533a6fa9389d542d2">thread_proc</a> (int procnum)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thread per la simulazione di un processo.  <a href="a00029.html#gaf5abb1899913f9533a6fa9389d542d2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe">proc_init</a> (int num, int percentile, int only_read, int max_memory, char *pl, int lp)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funzione per la creazione dei thread di tipo "PROCESSO".  <a href="a00029.html#gc1fccac69c4c01abf39d7554137f0efe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00029.html#g2b52a774545c4534786424f7d551d32c">process_info</a> (int procnum)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stampa lo stato delle pagine di un processo.  <a href="a00029.html#g2b52a774545c4534786424f7d551d32c"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Variabili</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#7f1b05703d4a8a19186f95ba1641cb70">reference_string</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reference string.  <a href="#7f1b05703d4a8a19186f95ba1641cb70"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#e9e4facf094759ed44248817d7839baf">reference_count</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numero di elementi nella reference string.  <a href="#e9e4facf094759ed44248817d7839baf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#9d87cae9ab3f8b8701c6af7b9c8738f4">temporal_locality</a> = 30</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Localita temporale.  <a href="#9d87cae9ab3f8b8701c6af7b9c8738f4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#5fa5d058e5b4918b8d77387bb374d273">only_read_allowed</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tipo di accesso alla memoria (R o RW).  <a href="#5fa5d058e5b4918b8d77387bb374d273"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="a00012.html">proc_t</a> **&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vettore dei processi attivi.  <a href="#3ced92996544dd3229aeeb148a8b587e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html#710037465055a75cba7d3b2625f966f8">max_proc</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numero di processi concorrenti.  <a href="#710037465055a75cba7d3b2625f966f8"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+<dl class="author" compact><dt><b>Autore:</b></dt><dd>Ferruccio Vitale (<a href="mailto:unixo@devzero.it">unixo@devzero.it</a>) </dd></dl>
+<dl class="date" compact><dt><b>Data:</b></dt><dd>21/04/2009</dd></dl>
+<dl class="note" compact><dt><b>Nota:</b></dt><dd>Universita' degli studi di Urbino "Carlo Bo"<br>
+ Sistemi Operativi<br>
+ Professore Emanuele Lattanzi<br>
+ Anno Accademico 2008 - 2009 </dd></dl>
+
+<p>Definizione nel file <a class="el" href="a00035.html">proc.c</a>.</p>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="bdab1684e4bcbb1e63b7eb0a9fff9dd9"></a><!-- doxytag: member="proc.c::DSS" ref="bdab1684e4bcbb1e63b7eb0a9fff9dd9" args="(p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DSS          </td>
+          <td>(</td>
+          <td class="paramtype">p&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(((<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[p]))-&gt;page_count*mmu.page_size)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Dimensione spazio indirizzamento virtuale. 
+<p>
+Restituisce la dimensione dello spazio d'indirizzamento virtuale del processo, dato dal prodotto del numero di pagine allocate per la dimensione della singola. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00054">54</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0d8bf0cccae0520adeba35a4edbd4143"></a><!-- doxytag: member="proc.c::LOOP_ITERATIONS" ref="0d8bf0cccae0520adeba35a4edbd4143" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOOP_ITERATIONS&nbsp;&nbsp;&nbsp;8          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di cicli. 
+<p>
+Numero di elementi del vettore che simulate_loop deve scorrere quando viene simulata la localita' spaziale. <dl class="see" compact><dt><b>Vedi anche:</b></dt><dd><a class="el" href="a00019.html#3176b30966e80543129b79888145e5bf" title="Dimensione dell&#39;elemento del vettore.">SIZE_OF_ITEM</a> </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00035.html#l00026">26</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="40976f7da1fc4de6c81c73330665d49d"></a><!-- doxytag: member="proc.c::MEM_ACCESS_PROBABILITY" ref="40976f7da1fc4de6c81c73330665d49d" args="(n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEM_ACCESS_PROBABILITY          </td>
+          <td>(</td>
+          <td class="paramtype">n&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;(<a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>[n]-&gt;percentile)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Probabilita di effettuare un accesso in memoria. 
+<p>
+Valore numerico espresso, in percentuale, che determina la probabilita per un processo di effettuare una lettura in memoria piuttosto che dal dispositivo di I/O. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00062">62</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3176b30966e80543129b79888145e5bf"></a><!-- doxytag: member="proc.c::SIZE_OF_ITEM" ref="3176b30966e80543129b79888145e5bf" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_OF_ITEM&nbsp;&nbsp;&nbsp;10          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Dimensione dell'elemento del vettore. 
+<p>
+<dl class="see" compact><dt><b>Vedi anche:</b></dt><dd><a class="el" href="a00019.html#0d8bf0cccae0520adeba35a4edbd4143" title="Numero di cicli.">LOOP_ITERATIONS</a> </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00035.html#l00032">32</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cc17168084ff3e01d809d16f7a271638"></a><!-- doxytag: member="proc.c::WAIT_FOR_IO_TO_COMPLETE" ref="cc17168084ff3e01d809d16f7a271638" args="(n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WAIT_FOR_IO_TO_COMPLETE          </td>
+          <td>(</td>
+          <td class="paramtype">n&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> { \
+    pthread_mutex_lock(&amp;<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>[n]-&gt;io_lock);\
+    pthread_cond_wait(&amp;<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>[n]-&gt;io_cond, &amp;<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>[n]-&gt;io_lock);\
+    pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>[n]-&gt;io_lock); \
+    } <span class="keywordflow">while</span> (0)
+</pre></div>Attesa per il completamente I/O. 
+<p>
+Il processo deve restare in attesa che il dispositivo di I/O espleti la richiesta effettuata. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00069">69</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle variabili</h2>
+<a class="anchor" name="710037465055a75cba7d3b2625f966f8"></a><!-- doxytag: member="proc.c::max_proc" ref="710037465055a75cba7d3b2625f966f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00025.html#710037465055a75cba7d3b2625f966f8">max_proc</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di processi concorrenti. 
+<p>
+La variabile <code>max_proc</code>, per default, viene inizializzato al valore 5, ma e tuttavia modificabile usando il paramentro <code>-p</code>. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00102">102</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5fa5d058e5b4918b8d77387bb374d273"></a><!-- doxytag: member="proc.c::only_read_allowed" ref="5fa5d058e5b4918b8d77387bb374d273" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int <a class="el" href="a00019.html#5fa5d058e5b4918b8d77387bb374d273">only_read_allowed</a><code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tipo di accesso alla memoria (R o RW). 
+<p>
+Determina se i processi possono effettuare accessi alla memoria in lettura o anche in scrittura: se vale uno (1), un processo puo soltanto leggere la memoria. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00087">87</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3ced92996544dd3229aeeb148a8b587e"></a><!-- doxytag: member="proc.c::proc_table" ref="3ced92996544dd3229aeeb148a8b587e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00012.html">proc_t</a>** <a class="el" href="a00025.html#3ced92996544dd3229aeeb148a8b587e">proc_table</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vettore dei processi attivi. 
+<p>
+Viene allocato dalla funzione proc_init e deallocato nel main al termine dell'esecuzione; il numero massimo di elementi e dato dal valore di max_proc. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00095">95</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e9e4facf094759ed44248817d7839baf"></a><!-- doxytag: member="proc.c::reference_count" ref="e9e4facf094759ed44248817d7839baf" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00025.html#e9e4facf094759ed44248817d7839baf">reference_count</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Numero di elementi nella reference string. 
+<p>
+<dl class="see" compact><dt><b>Vedi anche:</b></dt><dd><a class="el" href="a00025.html#6633963a187d60adb6085511243aa52c" title="Reference string.">reference_string</a> </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00035.html#l00045">45</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7f1b05703d4a8a19186f95ba1641cb70"></a><!-- doxytag: member="proc.c::reference_string" ref="7f1b05703d4a8a19186f95ba1641cb70" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a> * <a class="el" href="a00025.html#6633963a187d60adb6085511243aa52c">reference_string</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Reference string. 
+<p>
+Vettore di pagine alle quali il processo dovra' accedere per misurare il numero di <a class="el" href="a00011.html" title="Struttura per la rappresentazione di una pagina virtuale.">page</a> fault generati. 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00039">39</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9d87cae9ab3f8b8701c6af7b9c8738f4"></a><!-- doxytag: member="proc.c::temporal_locality" ref="9d87cae9ab3f8b8701c6af7b9c8738f4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00019.html#9d87cae9ab3f8b8701c6af7b9c8738f4">temporal_locality</a> = 30          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Localita temporale. 
+<p>
+Percentuale di probabilita temporale di accedere allo stesso dato 
+<p>Definizione alla linea <a class="el" href="a00035.html#l00079">79</a> del file <a class="el" href="a00035.html">proc.c</a>.</p>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

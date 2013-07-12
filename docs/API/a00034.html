@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO:  File sorgente vmbo/src/mmu.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<h1>vmbo/src/mmu.h</h1><a href="a00018.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef _MMU_H_</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define _MMU_H_</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;pthread.h&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include "<a class="code" href="a00024.html">vm_types.h</a>"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "<a class="code" href="a00021.html">queue.h</a>"</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include "<a class="code" href="a00020.html">proc.h</a>"</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include "<a class="code" href="a00016.html">io_device.h</a>"</span>
+<a name="l00021"></a>00021 
+<a name="l00056"></a><a class="code" href="a00018.html#ad7eab9aa3f866ff597b8afef4ee4e7f">00056</a> <span class="preprocessor">#define IS_PAGE_PRESENT(p)              ((p).present)</span>
+<a name="l00057"></a><a class="code" href="a00018.html#7a22e161e9dc14ba9e29a1a141995fd2">00057</a> <span class="preprocessor"></span><span class="preprocessor">#define IS_PAGE_REFERENCED(p)           ((p).reference)</span>
+<a name="l00058"></a><a class="code" href="a00018.html#6011943db531bd72ddd4dc11ba079ff8">00058</a> <span class="preprocessor"></span><span class="preprocessor">#define IS_PAGE_DIRTY(p)                ((p).dirty)</span>
+<a name="l00059"></a><a class="code" href="a00018.html#0439c9d8b12a7ca812625cbe25cf6452">00059</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_CLEAR_DIRTY(p)             ((p).dirty = 0)</span>
+<a name="l00060"></a><a class="code" href="a00018.html#25b47a83e026f74189671b7264235bf4">00060</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_CLEAR_REFERENCED(p)        ((p).reference = 0)</span>
+<a name="l00061"></a><a class="code" href="a00018.html#66ac1d700e6118f81a99a61098b9f2fa">00061</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_CLEAR_PRESENT(p)           ((p).present = 0)</span>
+<a name="l00062"></a><a class="code" href="a00018.html#cd587464f41f54435687db81d3458993">00062</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_CLEAR_FRAMEID(p)           ((p).frame_id = (uint16_t) -1)</span>
+<a name="l00063"></a><a class="code" href="a00018.html#6727db79c42008427edbef4a4899c137">00063</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_SET_DIRTY(p)               ((p).dirty = 1)</span>
+<a name="l00064"></a><a class="code" href="a00018.html#c3fa31a10f3114cc8ca1eb8138fb0ff9">00064</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_SET_REFERENCED(p)          ((p).reference = 1)</span>
+<a name="l00065"></a><a class="code" href="a00018.html#a4fd9819f686e5a32f5223c7ac941bcb">00065</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_SET_PRESENT(p)             ((p).present = 1)</span>
+<a name="l00066"></a><a class="code" href="a00018.html#d9810027c0f0a887d21e2c68a8789a70">00066</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_SET_NUM(p, num)            ((p).id = num)</span>
+<a name="l00067"></a><a class="code" href="a00018.html#29b3192fe6429305beb4fb4a2366b213">00067</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_SET_FRAMEID(p, fid)        ((p).frame_id = fid)</span>
+<a name="l00068"></a><a class="code" href="a00018.html#e8f5cee6532532442ffa21392c18107a">00068</a> <span class="preprocessor"></span><span class="preprocessor">#define PAGE_NUM(p)                     ((p).id)</span>
+<a name="l00069"></a><a class="code" href="a00018.html#c08bbc74a539602f7b54686146d2aa4b">00069</a> <span class="preprocessor"></span><span class="preprocessor">#define FRAME_ID(p)                     ((p).frame_id)</span>
+<a name="l00070"></a><a class="code" href="a00018.html#6450fa975b25a17fa02ee10dc22c0c0c">00070</a> <span class="preprocessor"></span><span class="preprocessor">#define ASSIGN_FRAME_TO_PROC(f,p,n)     do {\</span>
+<a name="l00071"></a>00071 <span class="preprocessor">f-&gt;debug_info.pid = p-&gt;pid; \</span>
+<a name="l00072"></a>00072 <span class="preprocessor">f-&gt;debug_info.page_id = n; \</span>
+<a name="l00073"></a>00073 <span class="preprocessor">} while (0)</span>
+<a name="l00074"></a><a class="code" href="a00018.html#ad24872b31f6b55a0eca0506ab5765f9">00074</a> <span class="preprocessor"></span><span class="preprocessor">#define NUM_OF_REQUESTS()               (mmu.page_hits+mmu.page_faults)</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span>
+<a name="l00076"></a>00076 
+<a name="l00083"></a><a class="code" href="a00008.html">00083</a> <span class="keyword">struct </span><a class="code" href="a00008.html" title="Parametri di configurazione del modulo MMU.">mmu_data</a> {
+<a name="l00085"></a><a class="code" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">00085</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00008.html#3282e2d3604abd7df42b7f433eae3f0c">page_bits</a>;
+<a name="l00087"></a><a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">00087</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00008.html#9407343837c7bff10e3fafbcbd4e5e12">offset_bits</a>;
+<a name="l00089"></a><a class="code" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">00089</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#aeff6f121e4b4b87654c3c98ff8afb2a">offset_mask</a>;   
+<a name="l00091"></a><a class="code" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">00091</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#7deeacf0032d6dfa1aa2a9b9532bef4f">total_access</a>;
+<a name="l00093"></a><a class="code" href="a00008.html#e050b82b994239e7902e82bb0ce27626">00093</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#e050b82b994239e7902e82bb0ce27626">page_faults</a>;
+<a name="l00095"></a><a class="code" href="a00008.html#259b2896187acb71444706a1878157e4">00095</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#259b2896187acb71444706a1878157e4">page_hits</a>;
+<a name="l00097"></a><a class="code" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">00097</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#9dd3e47e968a8f6beb5d88c6d1b7ebe9">page_size</a>;
+<a name="l00099"></a><a class="code" href="a00008.html#7bbdf033c0ac1031e3d41e4e4c40a0a9">00099</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00008.html#7bbdf033c0ac1031e3d41e4e4c40a0a9">ram_size</a>;
+<a name="l00101"></a><a class="code" href="a00008.html#a7b13eb6d3954f3874a6670e551c29d4">00101</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00008.html#a7b13eb6d3954f3874a6670e551c29d4">max_page_count</a>;
+<a name="l00102"></a>00102 } <a class="code" href="a00018.html#da2557f9d82bb48f501d53cb4c2d9a0e">mmu</a>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 
+<a name="l00114"></a><a class="code" href="a00003.html">00114</a> <span class="keyword">struct </span><a class="code" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> {
+<a name="l00116"></a><a class="code" href="a00003.html#4fc3a0c58dfbd1e68224521185cb9384">00116</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00003.html#4fc3a0c58dfbd1e68224521185cb9384">id</a>;
+<a name="l00118"></a><a class="code" href="a00003.html#11846ffc309e152ba70c778579493427">00118</a>     <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00003.html#11846ffc309e152ba70c778579493427">physical_addr</a>;
+<a name="l00120"></a><a class="code" href="a00003.html#4a32eceb12f1d4b807a007461348ec09">00120</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="a00003.html#4a32eceb12f1d4b807a007461348ec09">valid</a>:1;
+<a name="l00122"></a>00122     <span class="keyword">struct </span>{
+<a name="l00124"></a><a class="code" href="a00003.html#9089e9c40db82122a499b9620e2cb54e">00124</a>         <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00003.html#9089e9c40db82122a499b9620e2cb54e">pid</a>;
+<a name="l00126"></a><a class="code" href="a00003.html#50d22eccd6a329903c047ce9a7e020ae">00126</a>         <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00003.html#50d22eccd6a329903c047ce9a7e020ae">page_id</a>;
+<a name="l00127"></a>00127     } <a class="code" href="a00003.html#7ac67aefdaaee78da794abf65fa96c3c">debug_info</a>;
+<a name="l00129"></a><a class="code" href="a00003.html#5fb71772e374bdbec2448359ad071a86">00129</a>     <a class="code" href="a00021.html#765904f4fab4e7de1e2cd8ff351bc353">STAILQ_ENTRY</a>(<a class="code" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a>) <a class="code" href="a00003.html#eacccdc264e0dbc1490a2d31a209085b">entries</a>;
+<a name="l00130"></a>00130 };
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 
+<a name="l00136"></a><a class="code" href="a00001.html">00136</a> struct <a class="code" href="a00001.html" title="Struttura per rappresentare una pagina associata ad un frame.">active_page</a> {
+<a name="l00138"></a><a class="code" href="a00001.html#2ff0507ae66e3e57f919445037f8db1d">00138</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> procnum;
+<a name="l00140"></a><a class="code" href="a00001.html#50d22eccd6a329903c047ce9a7e020ae">00140</a>     <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00003.html#50d22eccd6a329903c047ce9a7e020ae">page_id</a>;
+<a name="l00142"></a><a class="code" href="a00001.html#178dbad60ef82ec1321ff053b58ec348">00142</a>     <a class="code" href="a00021.html#f71bfd90dc9d00fb03545fe66c67d673">TAILQ_ENTRY</a>(active_page) entries;
+<a name="l00143"></a>00143 };
+<a name="l00144"></a>00144 
+<a name="l00148"></a><a class="code" href="a00018.html#e7205f653d0ac8fd96f71fc42fa963d5">00148</a> typedef struct active_page <a class="code" href="a00001.html" title="Struttura per rappresentare una pagina associata ad un frame.">active_page_t</a>;
+<a name="l00149"></a>00149 
+<a name="l00153"></a><a class="code" href="a00018.html#94cbf4e1b49f5c1501775c2a1dbb078f">00153</a> typedef struct <a class="code" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame</a> <a class="code" href="a00003.html" title="Struttura per la rappresentazione di un frame di memoria.">frame_t</a>;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="comment">/*</span>
+<a name="l00156"></a>00156 <span class="comment"> *  Prototipi di funzioni pubbliche</span>
+<a name="l00157"></a>00157 <span class="comment"> */</span>
+<a name="l00158"></a>00158 pthread_t *<a class="code" href="a00028.html#gf97ffa8a4eade22efcc3545bb3c46d6e" title="Inizializzazione MMU.">mmu_init</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);
+<a name="l00159"></a>00159 <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a> <a class="code" href="a00028.html#gc23a1ee8fe6271110099f07ca81163ed" title="Funzione per la lettura/scrittura di una zona di memoria.">memory_access</a>(<span class="keywordtype">int</span>, <a class="code" href="a00024.html#6593e0188f8e2719be63f87d53734582" title="Definizione del tipo numero intero non segnato a 32 bit.">uint32_t</a>, <span class="keywordtype">int</span>);
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 <span class="preprocessor">#endif              </span><span class="comment">/* _MMU_H_ */</span>
+</pre></div></div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

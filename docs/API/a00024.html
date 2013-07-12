@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO: Riferimenti per il file vmbo/src/vm_types.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Riferimenti per il file vmbo/src/vm_types.h</h1><code>#include &lt;stdio.h&gt;</code><br>
+
+<p>
+<div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dynsection">
+<p><center><img src="a00048.png" border="0" usemap="#vmbo/src/vm_types.hdep_map" alt=""></center>
+<map name="vmbo/src/vm_types.hdep_map">
+<area shape="rect" id="node3" href="a00016.html" title="vmbo/src/io_device.h" alt="" coords="236,160,396,189"><area shape="rect" id="node7" href="a00018.html" title="vmbo/src/mmu.h" alt="" coords="31,237,161,267"><area shape="rect" id="node17" href="a00020.html" title="vmbo/src/proc.h" alt="" coords="353,83,481,112"><area shape="rect" id="node24" href="a00026.html" title="vmbo/src/vmbo.h" alt="" coords="572,160,708,189"><area shape="rect" id="node5" href="a00015.html" title="vmbo/src/io_device.c" alt="" coords="236,237,396,267"><area shape="rect" id="node11" href="a00019.html" title="vmbo/src/proc.c" alt="" coords="160,315,288,344"><area shape="rect" id="node13" href="a00025.html" title="vmbo/src/vmbo.c" alt="" coords="416,315,552,344"><area shape="rect" id="node9" href="a00017.html" title="vmbo/src/mmu.c" alt="" coords="5,315,136,344"></map>
+</div>
+
+<p>
+<a href="a00040.html">Vai al codice sorgente di questo file.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Strutture dati</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html">page</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struttura per la rappresentazione di una pagina virtuale.  <a href="a00011.html#_details">Continua...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Definizioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#5bd6c80bbb0fa36b35dddb1c9606e99c">XMALLOC</a>(type, num)&nbsp;&nbsp;&nbsp;((type *) xmalloc ((num) * sizeof(type)))</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Macro per migliorare la leggibilita' dell'operazione di allocazione di blocchi di memoria: e' necessario specificare il tipo di dato ed il numero di elementi da allocare (il prototipo e' simile alla calloc).  <a href="#5bd6c80bbb0fa36b35dddb1c9606e99c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65">XFREE</a>(stale)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo sul puntatore passato come parametro, poi deallocato ed infine azzerato (garbage collector).  <a href="#26b1ec19cda38557779b21ff0b1a7d65"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#c0ee8459c3d2924e31b51bd36db6ac5c">thread_fn_t</a> )(void *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo thread_fn_t come prototipo di una funzione eseguita come thread.  <a href="#c0ee8459c3d2924e31b51bd36db6ac5c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef unsigned short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo numero intero non segnato a 16 bit.  <a href="#c531592bdbc7dfba81524d5eb21f9778"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definizione del tipo numero intero non segnato a 32 bit.  <a href="#6593e0188f8e2719be63f87d53734582"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef struct <a class="el" href="a00011.html">page</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#de89166d54350940b6a08604d1119f4e">page_t</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Funzioni</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html#307a2ba6d2366704dc1d57b8d20b37ef">xmalloc</a> (size_t)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wrapper della funzione "malloc".  <a href="#307a2ba6d2366704dc1d57b8d20b37ef"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>Descrizione dettagliata</h2>
+<dl class="author" compact><dt><b>Autore:</b></dt><dd>Ferruccio Vitale (<a href="mailto:unixo@devzero.it">unixo@devzero.it</a>) </dd></dl>
+<dl class="date" compact><dt><b>Data:</b></dt><dd>21/04/2009 </dd></dl>
+<dl class="version" compact><dt><b>Versione:</b></dt><dd>1.1</dd></dl>
+<dl class="note" compact><dt><b>Nota:</b></dt><dd>Universita' degli studi di Urbino "Carlo Bo"<br>
+ Sistemi Operativi<br>
+ Professore Emanuele Lattanzi<br>
+ Anno Accademico 2008 - 2009 </dd></dl>
+
+<p>Definizione nel file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+<hr><h2>Documentazione delle definizioni</h2>
+<a class="anchor" name="26b1ec19cda38557779b21ff0b1a7d65"></a><!-- doxytag: member="vm_types.h::XFREE" ref="26b1ec19cda38557779b21ff0b1a7d65" args="(stale)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XFREE          </td>
+          <td>(</td>
+          <td class="paramtype">stale&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valore:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> { \
+<span class="keywordflow">if</span> (stale) { free ((<span class="keywordtype">void</span> *) stale); \
+stale = 0; } \
+} <span class="keywordflow">while</span> (0)
+</pre></div>Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo sul puntatore passato come parametro, poi deallocato ed infine azzerato (garbage collector). 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00030">30</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5bd6c80bbb0fa36b35dddb1c9606e99c"></a><!-- doxytag: member="vm_types.h::XMALLOC" ref="5bd6c80bbb0fa36b35dddb1c9606e99c" args="(type, num)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XMALLOC          </td>
+          <td>(</td>
+          <td class="paramtype">type,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">num&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;((type *) xmalloc ((num) * sizeof(type)))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Macro per migliorare la leggibilita' dell'operazione di allocazione di blocchi di memoria: e' necessario specificare il tipo di dato ed il numero di elementi da allocare (il prototipo e' simile alla calloc). 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00023">23</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a class="anchor" name="de89166d54350940b6a08604d1119f4e"></a><!-- doxytag: member="vm_types.h::page_t" ref="de89166d54350940b6a08604d1119f4e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="a00011.html">page</a> <a class="el" href="a00011.html">page_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00068">68</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c0ee8459c3d2924e31b51bd36db6ac5c"></a><!-- doxytag: member="vm_types.h::thread_fn_t" ref="c0ee8459c3d2924e31b51bd36db6ac5c" args=")(void *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void *(* <a class="el" href="a00024.html#c0ee8459c3d2924e31b51bd36db6ac5c">thread_fn_t</a>)(void *)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo thread_fn_t come prototipo di una funzione eseguita come thread. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00039">39</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c531592bdbc7dfba81524d5eb21f9778"></a><!-- doxytag: member="vm_types.h::uint16_t" ref="c531592bdbc7dfba81524d5eb21f9778" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int <a class="el" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778">uint16_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo numero intero non segnato a 16 bit. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00043">43</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6593e0188f8e2719be63f87d53734582"></a><!-- doxytag: member="vm_types.h::uint32_t" ref="6593e0188f8e2719be63f87d53734582" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int <a class="el" href="a00024.html#6593e0188f8e2719be63f87d53734582">uint32_t</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definizione del tipo numero intero non segnato a 32 bit. 
+<p>
+
+<p>Definizione alla linea <a class="el" href="a00040.html#l00047">47</a> del file <a class="el" href="a00040.html">vm_types.h</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentazione delle funzioni</h2>
+<a class="anchor" name="307a2ba6d2366704dc1d57b8d20b37ef"></a><!-- doxytag: member="vm_types.h::xmalloc" ref="307a2ba6d2366704dc1d57b8d20b37ef" args="(size_t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * xmalloc           </td>
+          <td>(</td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>num</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Wrapper della funzione "malloc". 
+<p>
+La funzione effettua un controllo di validita del puntatore restituito: in caso di mancata allocazione, il programma terminera la propria esecuzione. <dl compact><dt><b>Parametri:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>num</em>&nbsp;</td><td>Dimensione del blocco di memoria da allocare </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Restituisce:</b></dt><dd>Puntatore al blocco di memoria allocato </dd></dl>
+
+<p>Definizione alla linea <a class="el" href="a00041.html#l00412">412</a> del file <a class="el" href="a00041.html">vmbo.c</a>.</p>
+
+</div>
+</div><p>
+</div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	

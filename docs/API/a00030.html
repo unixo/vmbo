@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>vmbo - Virtual Memory BO:  File sorgente vmbo/src/io_device.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generato da Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<h1>vmbo/src/io_device.c</h1><a href="a00015.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00013"></a>00013 <span class="preprocessor">#include "<a class="code" href="a00016.html">io_device.h</a>"</span>
+<a name="l00014"></a>00014 
+<a name="l00022"></a><a class="code" href="a00007.html#0bb7f33d11e08d673306dc495c975b5f">00022</a> <span class="keyword">static</span> <a class="code" href="a00021.html#7b54f0de61925e7cf33184c2ec24da14">STAILQ_HEAD</a>(<a class="code" href="a00007.html" title="Lista FIFO di richieste di I/O.">io_requests</a>, <a class="code" href="a00006.html" title="Struttura per la rappresentazione di una richiesta d&amp;#39;I/O.">io_entry</a>) <a class="code" href="a00015.html#0ae99440354d7bc7c7f71ee3b8a24e6b" title="Puntatore al primo elemento della FIFO.">io_request_head</a>;
+<a name="l00026"></a><a class="code" href="a00015.html#6601088e2e79ba5976852f8c288abc7b">00026</a> static <a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> <a class="code" href="a00015.html#6601088e2e79ba5976852f8c288abc7b" title="Numero di richieste di I/O in coda.">ioreq_count</a>;
+<a name="l00030"></a><a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab">00030</a> static pthread_mutex_t <a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab" title="Mutex posto a protezione della FIFO.">fifo_lock</a> = PTHREAD_MUTEX_INITIALIZER;
+<a name="l00035"></a><a class="code" href="a00015.html#31283d7eee29d1bafe25eb2d4da02c2d">00035</a> static pthread_cond_t <a class="code" href="a00015.html#31283d7eee29d1bafe25eb2d4da02c2d" title="Condizione d&amp;#39;attesa nel quale il thread thread_io_device si blocca in attesa...">wait_cond</a> = PTHREAD_COND_INITIALIZER;
+<a name="l00039"></a><a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba">00039</a> static pthread_mutex_t <a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a> = PTHREAD_MUTEX_INITIALIZER;
+<a name="l00044"></a><a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76">00044</a> static pthread_mutex_t <a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76" title="Mutex posto a protezione della FIFO: per inserire/rimuovere elementi dalla coda si...">request_lock</a> = PTHREAD_MUTEX_INITIALIZER;
+<a name="l00052"></a><a class="code" href="a00015.html#c8473ece3559c12335d393685b9d9d0d">00052</a> static <span class="keywordtype">int</span> <a class="code" href="a00015.html#c8473ece3559c12335d393685b9d9d0d" title="Durata del thread I/O.">io_device_should_exit</a>;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 extern <a class="code" href="a00012.html" title="Struttura per la rappresentazione in memoria di un processo.">proc_t</a> **<a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>;
+<a name="l00055"></a>00055 extern <span class="keywordtype">int</span> <a class="code" href="a00015.html#710037465055a75cba7d3b2625f966f8" title="Numero di processi concorrenti.">max_proc</a>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00068"></a>00068 static <span class="keywordtype">void</span> *
+<a name="l00069"></a><a class="code" href="a00015.html#28b5ceb23d706ad5bb7b3cb39b465ca0">00069</a> <a class="code" href="a00015.html#28b5ceb23d706ad5bb7b3cb39b465ca0" title="Thread dispositivo I/O.">thread_io_device</a>(<span class="keywordtype">void</span> *parg)
+<a name="l00070"></a>00070 {
+<a name="l00071"></a>00071     <a class="code" href="a00006.html" title="Struttura per la rappresentazione di una richiesta d&amp;#39;I/O.">io_entry_t</a> *req;
+<a name="l00072"></a>00072     <span class="keyword">struct </span>timespec timeout;
+<a name="l00073"></a>00073     <span class="keywordtype">int</span> num;
+<a name="l00074"></a>00074     
+<a name="l00075"></a>00075     printf(<span class="stringliteral">"--&gt; Thread DEVICE I/O avviato [Tmin=%d, Tmax=%d]\n"</span>,
+<a name="l00076"></a>00076            <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a>, <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a>);
+<a name="l00077"></a>00077     
+<a name="l00078"></a>00078     <span class="keywordflow">while</span> (!io_device_should_exit) {
+<a name="l00079"></a>00079         pthread_mutex_lock(&amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00080"></a>00080         <span class="keywordflow">while</span> ((ioreq_count == 0) &amp;&amp; !io_device_should_exit) {
+<a name="l00081"></a>00081             pthread_cond_wait(&amp;<a class="code" href="a00015.html#31283d7eee29d1bafe25eb2d4da02c2d" title="Condizione d&amp;#39;attesa nel quale il thread thread_io_device si blocca in attesa...">wait_cond</a>, &amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083         
+<a name="l00084"></a>00084         <span class="keywordflow">if</span> (io_device_should_exit &amp;&amp; (ioreq_count == 0)) {
+<a name="l00085"></a>00085             pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00086"></a>00086             <span class="keywordflow">break</span>;
+<a name="l00087"></a>00087         }
+<a name="l00088"></a>00088         
+<a name="l00089"></a>00089         <span class="comment">/*</span>
+<a name="l00090"></a>00090 <span class="comment">         *  Estraggo la prima richiesta e la rimuovo dalla coda, aggiornando</span>
+<a name="l00091"></a>00091 <span class="comment">         *  la variabile "ioreq_count" che tiene traccia di quante richieste</span>
+<a name="l00092"></a>00092 <span class="comment">         *  sono ancora in attesa.</span>
+<a name="l00093"></a>00093 <span class="comment">         */</span>
+<a name="l00094"></a>00094         req = <a class="code" href="a00021.html#3e2eb7535019a2829399b24744dd1a66">STAILQ_FIRST</a>(&amp;io_request_head);
+<a name="l00095"></a>00095         assert(req);
+<a name="l00096"></a>00096         
+<a name="l00097"></a>00097         pthread_mutex_lock(&amp;<a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab" title="Mutex posto a protezione della FIFO.">fifo_lock</a>);
+<a name="l00098"></a>00098         <a class="code" href="a00021.html#2a0d6665f277f80bf301a16e6ab2403c">STAILQ_REMOVE</a>(&amp;io_request_head, req, <a class="code" href="a00006.html" title="Struttura per la rappresentazione di una richiesta d&amp;#39;I/O.">io_entry</a>, entries);
+<a name="l00099"></a>00099         ioreq_count--;
+<a name="l00100"></a>00100         pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab" title="Mutex posto a protezione della FIFO.">fifo_lock</a>);
+<a name="l00101"></a>00101         
+<a name="l00102"></a>00102         <span class="comment">/*</span>
+<a name="l00103"></a>00103 <span class="comment">         *  Genero un numero casuale compreso nell'intervallo chiuso </span>
+<a name="l00104"></a>00104 <span class="comment">         *  [Tmin,Tmax] utile a simulare il reperimento dell'informazione dal</span>
+<a name="l00105"></a>00105 <span class="comment">         *  dispositivo.</span>
+<a name="l00106"></a>00106 <span class="comment">         */</span>
+<a name="l00107"></a>00107         num = <a class="code" href="a00022.html#484d2e162b90ad46d32d1906577ab09a" title="La funzione restituisce un numero intero casuale nell&amp;#39;intervallo compreso tra...">bounded_rand</a>(<a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a>, <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a>);
+<a name="l00108"></a>00108         timeout.tv_sec = 0;
+<a name="l00109"></a>00109         timeout.tv_nsec = num * 1000000;
+<a name="l00110"></a>00110         nanosleep(&amp;timeout, NULL);
+<a name="l00111"></a>00111         fprintf(<a class="code" href="a00020.html#919acc831c71cb87d455b05e90c12ef5" title="File di log del processo.">LOG_FILE</a>(req-&gt;<a class="code" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>), 
+<a name="l00112"></a>00112                 <span class="stringliteral">"Richiesta d'accesso servita in %d ms\n"</span>, num);
+<a name="l00113"></a>00113         
+<a name="l00114"></a>00114         <span class="comment">/*</span>
+<a name="l00115"></a>00115 <span class="comment">         *  Aggiorno le statistiche e "risveglio" il processo che ha fatto la</span>
+<a name="l00116"></a>00116 <span class="comment">         *  richiesta.</span>
+<a name="l00117"></a>00117 <span class="comment">         */</span>
+<a name="l00118"></a>00118         <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a>++;
+<a name="l00119"></a>00119         proc_table[req-&gt;<a class="code" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>]-&gt;stats.io_requests++;
+<a name="l00120"></a>00120         proc_table[req-&gt;<a class="code" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>]-&gt;stats.time_elapsed += num;
+<a name="l00121"></a>00121         pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00122"></a>00122         pthread_cond_signal(&amp;proc_table[req-&gt;<a class="code" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a>]-&gt;io_cond);
+<a name="l00123"></a>00123         <a class="code" href="a00024.html#26b1ec19cda38557779b21ff0b1a7d65" title="Deallocazione sicura di un blocco di memoria. Viene dapprima effettuato un controllo...">XFREE</a>(req);
+<a name="l00124"></a>00124     }
+<a name="l00125"></a>00125     printf(<span class="stringliteral">"&lt;-- Thread DEVICE I/O terminato\n"</span>);
+<a name="l00126"></a>00126     pthread_exit(NULL);
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 
+<a name="l00142"></a><a class="code" href="a00027.html#g0de75477baa4d452a538a517c6589ca0">00142</a> pthread_t *<a class="code" href="a00027.html#g0de75477baa4d452a538a517c6589ca0" title="Inizializzazione I/O.">io_device_init</a>(<span class="keywordtype">int</span> min, <span class="keywordtype">int</span> max)
+<a name="l00143"></a>00143 {
+<a name="l00144"></a>00144     pthread_t *tid = <a class="code" href="a00024.html#5bd6c80bbb0fa36b35dddb1c9606e99c" title="Macro per migliorare la leggibilita&amp;#39; dell&amp;#39;operazione di allocazione di blocchi...">XMALLOC</a>(pthread_t, 1);
+<a name="l00145"></a>00145     <span class="keywordtype">int</span> ret;
+<a name="l00146"></a>00146     
+<a name="l00147"></a>00147     <span class="keywordflow">if</span> (<a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a> &gt; <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a>)
+<a name="l00148"></a>00148         <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a> = <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a>;
+<a name="l00149"></a>00149     <span class="keywordflow">else</span> {
+<a name="l00150"></a>00150         <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#bd46861dcc5c0e074332fd481f72c4dc">Tmin</a> = min;
+<a name="l00151"></a>00151         <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#9bbf50bca5b547265a82ba1bebdabe10">Tmax</a> = max;
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153     <a class="code" href="a00015.html#c8473ece3559c12335d393685b9d9d0d" title="Durata del thread I/O.">io_device_should_exit</a> = 0;
+<a name="l00154"></a>00154     <a class="code" href="a00015.html#6601088e2e79ba5976852f8c288abc7b" title="Numero di richieste di I/O in coda.">ioreq_count</a> = 0;
+<a name="l00155"></a>00155     <a class="code" href="a00016.html#6218cf93cdd9a13fe628f99b847105d9">io_dev</a>.<a class="code" href="a00005.html#7f01b0794446b03973f95d90366d6b0d">req_count</a> = 0;
+<a name="l00156"></a>00156     <a class="code" href="a00021.html#3b508a1c06ded6b4ce4b1feea7643c28">STAILQ_INIT</a>(&amp;<a class="code" href="a00015.html#0ae99440354d7bc7c7f71ee3b8a24e6b" title="Puntatore al primo elemento della FIFO.">io_request_head</a>);
+<a name="l00157"></a>00157     ret = pthread_create(tid, NULL, &amp;<a class="code" href="a00015.html#28b5ceb23d706ad5bb7b3cb39b465ca0" title="Thread dispositivo I/O.">thread_io_device</a>, NULL);
+<a name="l00158"></a>00158     
+<a name="l00159"></a>00159     <span class="keywordflow">return</span> (ret == 0) ? tid : NULL;
+<a name="l00160"></a>00160 }
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 
+<a name="l00174"></a><a class="code" href="a00027.html#g64fbfccf96403a1ccbdc4f4408f8adf5">00174</a> <span class="keywordtype">int</span> <a class="code" href="a00027.html#g64fbfccf96403a1ccbdc4f4408f8adf5" title="Richiede un accesso al dispositivo di I/O.">io_device_read</a>(<a class="code" href="a00024.html#c531592bdbc7dfba81524d5eb21f9778" title="Definizione del tipo numero intero non segnato a 16 bit.">uint16_t</a> procnum)
+<a name="l00175"></a>00175 {
+<a name="l00176"></a>00176     <a class="code" href="a00006.html" title="Struttura per la rappresentazione di una richiesta d&amp;#39;I/O.">io_entry_t</a> *req;
+<a name="l00177"></a>00177     <span class="keywordtype">int</span> ret;
+<a name="l00178"></a>00178     
+<a name="l00179"></a>00179     pthread_mutex_lock(&amp;<a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76" title="Mutex posto a protezione della FIFO: per inserire/rimuovere elementi dalla coda si...">request_lock</a>);
+<a name="l00180"></a>00180     
+<a name="l00181"></a>00181     <span class="keywordflow">if</span> (!<a class="code" href="a00015.html#c8473ece3559c12335d393685b9d9d0d" title="Durata del thread I/O.">io_device_should_exit</a>) {
+<a name="l00182"></a>00182         pthread_mutex_lock(&amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00183"></a>00183         req = <a class="code" href="a00024.html#5bd6c80bbb0fa36b35dddb1c9606e99c" title="Macro per migliorare la leggibilita&amp;#39; dell&amp;#39;operazione di allocazione di blocchi...">XMALLOC</a>(<a class="code" href="a00006.html" title="Struttura per la rappresentazione di una richiesta d&amp;#39;I/O.">io_entry_t</a>, 1);
+<a name="l00184"></a>00184         req-&gt;<a class="code" href="a00006.html#9089e9c40db82122a499b9620e2cb54e">pid</a> = <a class="code" href="a00015.html#9399ea5dcc68d7ce40f84bf37593a936" title="Vettore dei processi attivi.">proc_table</a>[procnum]-&gt;<a class="code" href="a00012.html#9089e9c40db82122a499b9620e2cb54e">pid</a>;
+<a name="l00185"></a>00185         req-&gt;<a class="code" href="a00006.html#2ff0507ae66e3e57f919445037f8db1d">procnum</a> = procnum;
+<a name="l00186"></a>00186         pthread_mutex_lock(&amp;<a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab" title="Mutex posto a protezione della FIFO.">fifo_lock</a>);
+<a name="l00187"></a>00187         <span class="keywordflow">if</span> (<a class="code" href="a00021.html#8427c8f43d09d73062cf6b37f303aff5">STAILQ_EMPTY</a>(&amp;<a class="code" href="a00015.html#0ae99440354d7bc7c7f71ee3b8a24e6b" title="Puntatore al primo elemento della FIFO.">io_request_head</a>))
+<a name="l00188"></a>00188             <a class="code" href="a00021.html#ad3b1fb87b675bae75334acd958b57dc">STAILQ_INSERT_HEAD</a>(&amp;<a class="code" href="a00015.html#0ae99440354d7bc7c7f71ee3b8a24e6b" title="Puntatore al primo elemento della FIFO.">io_request_head</a>, req, entries);
+<a name="l00189"></a>00189         <span class="keywordflow">else</span>
+<a name="l00190"></a>00190             <a class="code" href="a00021.html#7bc9a31418b55c5698be3e54e10bb484">STAILQ_INSERT_TAIL</a>(&amp;<a class="code" href="a00015.html#0ae99440354d7bc7c7f71ee3b8a24e6b" title="Puntatore al primo elemento della FIFO.">io_request_head</a>, req, entries);
+<a name="l00191"></a>00191         <a class="code" href="a00015.html#6601088e2e79ba5976852f8c288abc7b" title="Numero di richieste di I/O in coda.">ioreq_count</a>++;
+<a name="l00192"></a>00192         pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#c091f4fd4ff5e722cae1a2d5191812ab" title="Mutex posto a protezione della FIFO.">fifo_lock</a>);
+<a name="l00193"></a>00193         
+<a name="l00194"></a>00194         fprintf(<a class="code" href="a00020.html#919acc831c71cb87d455b05e90c12ef5" title="File di log del processo.">LOG_FILE</a>(procnum), 
+<a name="l00195"></a>00195                 <span class="stringliteral">"\nRichiesta d'accesso a dispositivo I/O accodata\n"</span>);
+<a name="l00196"></a>00196         
+<a name="l00197"></a>00197         pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#af7d27c258f7a7b938ac24ff5d8a07ba" title="Mutex posto a protezione della condizione wait_cond.">wait_lock</a>);
+<a name="l00198"></a>00198         pthread_cond_signal(&amp;<a class="code" href="a00015.html#31283d7eee29d1bafe25eb2d4da02c2d" title="Condizione d&amp;#39;attesa nel quale il thread thread_io_device si blocca in attesa...">wait_cond</a>);
+<a name="l00199"></a>00199         ret = 1;
+<a name="l00200"></a>00200     } <span class="keywordflow">else</span>
+<a name="l00201"></a>00201         ret = 0;
+<a name="l00202"></a>00202     
+<a name="l00203"></a>00203     pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76" title="Mutex posto a protezione della FIFO: per inserire/rimuovere elementi dalla coda si...">request_lock</a>);
+<a name="l00204"></a>00204     
+<a name="l00205"></a>00205     <span class="keywordflow">return</span> ret;
+<a name="l00206"></a>00206 }
+<a name="l00207"></a>00207 
+<a name="l00208"></a>00208 
+<a name="l00215"></a><a class="code" href="a00027.html#gbc58cac7b3c0bd4162719dd9f846a6ae">00215</a> <span class="keywordtype">void</span> <a class="code" href="a00027.html#gbc58cac7b3c0bd4162719dd9f846a6ae" title="Determina l&amp;#39;uscita del thread di I/O.">tell_io_device_to_exit</a>()
+<a name="l00216"></a>00216 {
+<a name="l00217"></a>00217     pthread_mutex_lock(&amp;<a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76" title="Mutex posto a protezione della FIFO: per inserire/rimuovere elementi dalla coda si...">request_lock</a>);
+<a name="l00218"></a>00218     <a class="code" href="a00015.html#c8473ece3559c12335d393685b9d9d0d" title="Durata del thread I/O.">io_device_should_exit</a> = 1;
+<a name="l00219"></a>00219     pthread_mutex_unlock(&amp;<a class="code" href="a00015.html#84e057837f9f59a7f0dc11bd32366b76" title="Mutex posto a protezione della FIFO: per inserire/rimuovere elementi dalla coda si...">request_lock</a>);
+<a name="l00220"></a>00220     pthread_cond_signal(&amp;<a class="code" href="a00015.html#31283d7eee29d1bafe25eb2d4da02c2d" title="Condizione d&amp;#39;attesa nel quale il thread thread_io_device si blocca in attesa...">wait_cond</a>);
+<a name="l00221"></a>00221 }
+<a name="l00222"></a>00222 
+</pre></div></div>
+<table border="0" width="100%" style="border-top:1px solid black;">
+	<tr><td align="center"><img src="logo_uniurbdotit.jpg"></td></tr>
+	<tr><td align="center"><b>Università degli studi di Urbino "Carlo Bo"</b></td></tr>
+</table>	
